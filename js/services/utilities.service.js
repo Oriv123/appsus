@@ -1,5 +1,7 @@
 export const utilitiesService = {
-    makeId
+    makeId,
+    saveToStorage,
+    loadFromStorage
 }
 
 
@@ -10,4 +12,12 @@ function makeId(length = 11) {
         text += possible.charAt(Math.floor(Math.random() * possible.length));
     }
     return text;
+}
+
+function saveToStorage(key, value) {
+    localStorage.setItem(key, JSON.stringify(value))
+}
+
+function loadFromStorage(key) {
+    return JSON.parse(localStorage.getItem(key))
 }

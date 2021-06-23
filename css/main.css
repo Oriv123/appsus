@@ -3,3 +3,4 @@
 @import "./basic/helpers.css";
 @import "./cmps/app-header.css";
 @import "./cmps/app-footer.css";
+@import "./apps/mail/pages/email-app.css";
