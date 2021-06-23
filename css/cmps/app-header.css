@@ -1,0 +1,9 @@
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #EEEEEE;
+    background-color: #00ADB5;
+}
+
+.logo {}
