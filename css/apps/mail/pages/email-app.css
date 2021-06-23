@@ -1,5 +1,85 @@
+@import '../cmps/email-filter.css';
+@import '../cmps/email-list.css';
+@import '../cmps/email-details.css';
+@import '../cmps/email-preview.css';
+@import '../cmps/email-compose.css';
 .email-app {
+    background-color: #EEE;
+    width: 100%;
     margin: 0 auto;
-    background: #ffffff;
-    padding: 10px 10px 30px 10px;
+    height: fit-content;
+    padding: 0.5rem 0;
+}
+
+.email-app .main {
+    min-height: 80vh;
+    padding: 0 0.25rem;
+    background-color: rgb(0, 0, 0, 0.05);
+    margin: 0 auto;
+    display: flex;
+    width: 90%;
+    align-content: center;
+}
+
+.email-app .side-menu {
+    margin-right: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+}
+
+.email-app .side-menu li {
+    display: flex;
+    align-items: center;
+    width: 100px;
+    height: 30px;
+    font-size: 15px;
+    padding: 5px;
+    border-radius: 10px 50px 50px 10px;
+    text-transform: capitalize;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.email-app .side-menu .compose {
+    background-color: rgb(255, 255, 255);
+    border-radius: 50px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 100px;
+}
+
+.email-app .side-menu .compose::before {
+    content: url('../../../icons/add.svg');
+    margin-top: 5px;
+}
+
+.email-app .side-menu .inbox::before {
+    content: url('../../../icons/inbox.svg');
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
+.email-app .side-menu .sent::before {
+    content: url('../../../icons/send.svg');
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
+.starred a {
+    display: flex;
+}
+
+.starred img {
+    width: 19px;
+    margin-right: 8px;
+}
+
+.email-app .side-menu li:hover:not(:first-child) {
+    background-color: #ffffff9d;
+    border-radius: 10px 50px 50px 10px;
+}
+
+.email-app a {
+    text-decoration: none;
 }

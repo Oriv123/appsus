@@ -1,0 +1,52 @@
+.email-details {
+    width: 100%;
+    position: relative;
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+    text-align: left;
+}
+
+.email-details>:first-child {
+    border: none;
+    float: right;
+    background-color: transparent;
+    font-size: inherit;
+    color: inherit;
+    margin-top: 0.25rem;
+}
+
+.email-details a:hover,
+.email-details button:hover {
+    color: #fff7f7d3;
+}
+
+.email-details>*:not(:first-child) {
+    margin-bottom: 0.5rem;
+}
+
+.details-button-container {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+}
+
+.email-details>:nth-child(4) {
+    margin-bottom: 2rem;
+}
+
+.address-details {
+    display: flex;
+    padding-bottom: 1rem;
+    font-size: 0.8rem;
+}
+
+.address-details>:first-child {
+    margin-right: 2rem;
+}
+
+.details-timestamp {
+    font-size: 0.8rem;
+}
