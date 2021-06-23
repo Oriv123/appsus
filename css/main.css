@@ -1,3 +1,5 @@
 @import "./basic/base.css";
 @import "./basic/fonts.css";
 @import "./basic/helpers.css";
+@import "./cmps/app-header.css";
+@import "./cmps/app-footer.css";

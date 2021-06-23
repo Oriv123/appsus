@@ -9,11 +9,10 @@ const options = {
     router,
     template: `
         <section>
-            <h1>ori</h1>
-            <!-- <app-header />
+            <app-header />
             <router-view />
             <user-msg />
-            <app-footer /> -->
+            <app-footer />
         </section>
     `,
     components: {
