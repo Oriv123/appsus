@@ -6,23 +6,14 @@ export default {
     props: ['note'],
     template: `
     <div class="note-preview">
-    <component :is="note.type" :style="note.style"  :data="note">
+    <component :is="note.type"  :data="note">
    </component>
-        <button @click="remove(note.id)">✖</button>
     </div>
     `,
     computed: {
 
     },
-    methods: {
-        remove(noteId) {
-            var isAccepted = confirm('Are you sure you want to remove this note?')
-            if (!isAccepted) return;
-            console.log('removing...');
-            this.$emit('remove', noteId);
-        },
 
-    },
     created() {},
 
     components: {

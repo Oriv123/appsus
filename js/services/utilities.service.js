@@ -5,7 +5,7 @@ export const utilitiesService = {
 }
 
 
-function makeId(length = 11) {
+function makeId(length = 5) {
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     for (var i = 0; i < length; i++) {

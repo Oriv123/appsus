@@ -7,6 +7,7 @@ const KEEP_KEY = 'keepCache';
 
 export const keepService = {
         query,
+        addNote,
         removeNote
 
     }
@@ -14,7 +15,7 @@ export const keepService = {
 const defaultNotes = [{
         id: utilitiesService.makeId(),
         type: 'noteTxt',
-        isPinned: true,
+        isPinned: false,
         info: {
             txt: 'Fullstack Me Baby!'
         },
@@ -26,6 +27,7 @@ const defaultNotes = [{
     {
         id: utilitiesService.makeId(),
         type: 'noteImg',
+        isPinned: false,
         info: {
             url: 'https://th.bing.com/th/id/OIP.nKmUMQosDufQgbOAeTkUzQHaEK?w=297&h=180&c=7&o=5&pid=1.7',
             title: 'Me playing Mi'
@@ -38,6 +40,7 @@ const defaultNotes = [{
     {
         id: utilitiesService.makeId(),
         type: 'noteTodos',
+        isPinned: false,
         info: {
             label: 'How was it:',
             todos: [
@@ -67,9 +70,17 @@ function query() {
         })
 }
 
-function saveBook(book) {
-    return storageService.post(BOOKS_KEY, book)
-        .then(book => book);
+function addNote(note) {
+    const newNote = _formatNote(note);
+    return storageService.post(KEEP_KEY, newNote)
+        .then(note => note);
+}
+
+function editNote(note, newSetting) {
+    for (const key in newSetting) {
+        note[key] = newSetting[key];
+    }
+    return storageService.put(KEEP_KEY, note);
 }
 
 function removeNote(noteId) {
@@ -112,4 +123,46 @@ function removeReview(bookId, reviewId) {
             book.reviews.splice(reviewIdx, 1);
             return storageService.put(BOOKS_KEY, book);
         })
+}
+
+
+//Sorting out the note info
+function _formatNote(note) {
+
+    const { type } = note;
+    const info = {};
+    switch (type) {
+        case 'noteTxt':
+            info.txt = note.info.value;
+            break;
+        case 'noteImg':
+            info.title = 'Edit Title',
+                info.url = note.info.value;
+            break;
+        case 'noteTodos':
+            info.label = 'Edit title',
+                info.todos = note.info.value.split(',').map(txt => {
+                    const todo = {
+                        txt,
+                        doneAt: null
+                    }
+                    return todo;
+                })
+
+            console.log(info);
+            break;
+        default:
+
+            break;
+    }
+    const newNote = {
+        type,
+        isPinned: false,
+        info
+
+    };
+    return newNote;
+
+
+
 }
