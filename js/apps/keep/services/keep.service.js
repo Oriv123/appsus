@@ -6,28 +6,37 @@ import { utilitiesService } from '../../../services/utilities.service.js';
 const KEEP_KEY = 'keepCache';
 
 export const keepService = {
-    query,
+        query,
+        removeNote
 
-}
-
+    }
+    //TODO: Check the todos app from MVC class
 const defaultNotes = [{
+        id: utilitiesService.makeId(),
         type: 'noteTxt',
         isPinned: true,
         info: {
             txt: 'Fullstack Me Baby!'
+        },
+        style: {
+            backgroundColor: '#292929',
+            color: 'red'
         }
     },
     {
+        id: utilitiesService.makeId(),
         type: 'noteImg',
         info: {
-            url: 'https://th.bing.com/th/id/OIP.GnjU36nTvQHBXrOdUH3tfQHaQA?w=161&h=350&c=7&o=5&pid=1.7',
+            url: 'https://th.bing.com/th/id/OIP.nKmUMQosDufQgbOAeTkUzQHaEK?w=297&h=180&c=7&o=5&pid=1.7',
             title: 'Me playing Mi'
         },
         style: {
-            backgroundColor: '#00d'
+            backgroundColor: '#292929',
+            color: 'red'
         }
     },
     {
+        id: utilitiesService.makeId(),
         type: 'noteTodos',
         info: {
             label: 'How was it:',
@@ -35,6 +44,10 @@ const defaultNotes = [{
                 { txt: 'Do that', doneAt: null },
                 { txt: 'Do this', doneAt: 187111111 }
             ]
+        },
+        style: {
+            backgroundColor: '#292929',
+            color: 'red'
         }
     }
 ];
@@ -59,8 +72,8 @@ function saveBook(book) {
         .then(book => book);
 }
 
-function removeBook(bookId) {
-    return storageService.remove(BOOKS_KEY, bookId);
+function removeNote(noteId) {
+    return storageService.remove(KEEP_KEY, noteId);
 }
 
 

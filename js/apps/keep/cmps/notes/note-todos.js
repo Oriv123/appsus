@@ -1,24 +1,23 @@
 export default {
-    props: ['info'],
+    props: ['data'],
     template: `
         <div class="note-todos">
                 <h2>{{label}}</h2>
-                    <ul class="todos-list">
-                    <li v-for="todo in info.todos">
+                    <ol class="todos-list">
+                    <li v-for="todo in todos">
                         <p> {{todo.txt}} </p>
                     </li>
                     
-                    </ul>
+                    </ol>
         </div>
     `,
     data() {
         return {
-            selectedOpt: '',
+            label: this.data.info.label,
+            todos: this.data.info.todos
         }
     },
     methods: {
-        reportVal() {
-            this.$emit('setInput', this.selectedOpt)
-        }
+
     }
 }

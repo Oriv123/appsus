@@ -6,7 +6,7 @@ export default {
     <ul class="notes-list">
         <li v-for="note in notes" :key="note.id">
 
-        <keep-preview :note="note"  />
+        <keep-preview :note="note" @remove="remove"  />
         </section>
     </router-link>
 </li>
@@ -14,9 +14,6 @@ export default {
     `,
     methods: {
         remove(noteId) {
-            var isAccepted = confirm('Are you sure you want to remove this note?')
-            if (!isAccepted) return;
-            console.log('removing...');
             this.$emit('remove', noteId);
         },
 
@@ -24,9 +21,7 @@ export default {
     components: {
         keepPreview
     },
-    created() {
-        console.log(this.notes);
-    }
+    created() {}
 
 
 

@@ -1,0 +1,17 @@
+    .notes-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        grid-auto-flow: dense;
+    }
+    
+    .notes-list>li {
+        border: 2px solid;
+        width: 50%;
+        padding: 10px;
+        text-align: center;
+    }
+    
+    img {
+        max-width: 100%;
+        height: auto;
+    }

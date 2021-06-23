@@ -1,6 +1,6 @@
 import homePage from './pages/home-page.js';
 import keepApp from './apps/keep/pages/keep-app.js';
-import mailApp from './apps/email/pages/email-app.js';
+import emailApp from './apps/email/pages/email-app.js';
 
 
 const routes = [{
