@@ -9,7 +9,7 @@ export default {
                     <keep-add @add="addNote"> </keep-add>
                 <!-- <book-filter @filtered="setFilter"> </book-filter>
                 <router-link to="/book/add" class="add-books-link"  >Add books</router-link>  -->
-                 <keep-list  :notes="notesToShow" @remove="removeNote"></keep-list>
+                 <keep-list  :notes="notesToShow" @remove="removeNote" @change="changeSetting"/>
                 </section>
     `,
     data() {
@@ -33,10 +33,13 @@ export default {
         addNote(newNote) {
             keepService.addNote(newNote)
                 .then(() => {
-                    console.log('ttt');
                     this.loadNotes()
                 })
 
+        },
+        changeSetting(data) {
+            keepService.editNote(data.note, data.newSetting)
+                .then(this.loadNotes)
         }
         // setFilter(filterBy) {
         //     if (!filterBy.maxPrice) filterBy.maxPrice = Infinity;

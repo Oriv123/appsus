@@ -8,6 +8,7 @@ const KEEP_KEY = 'keepCache';
 export const keepService = {
         query,
         addNote,
+        editNote,
         removeNote
 
     }
@@ -15,7 +16,7 @@ export const keepService = {
 const defaultNotes = [{
         id: utilitiesService.makeId(),
         type: 'noteTxt',
-        isPinned: false,
+        isPinned: true,
         info: {
             txt: 'Fullstack Me Baby!'
         },
@@ -27,7 +28,7 @@ const defaultNotes = [{
     {
         id: utilitiesService.makeId(),
         type: 'noteImg',
-        isPinned: false,
+        isPinned: true,
         info: {
             url: 'https://th.bing.com/th/id/OIP.nKmUMQosDufQgbOAeTkUzQHaEK?w=297&h=180&c=7&o=5&pid=1.7',
             title: 'Me playing Mi'
@@ -40,9 +41,9 @@ const defaultNotes = [{
     {
         id: utilitiesService.makeId(),
         type: 'noteTodos',
-        isPinned: false,
+        isPinned: true,
         info: {
-            label: 'How was it:',
+            title: 'How was it:',
             todos: [
                 { txt: 'Do that', doneAt: null },
                 { txt: 'Do this', doneAt: 187111111 }
@@ -140,7 +141,7 @@ function _formatNote(note) {
                 info.url = note.info.value;
             break;
         case 'noteTodos':
-            info.label = 'Edit title',
+            info.title = 'Edit title',
                 info.todos = note.info.value.split(',').map(txt => {
                     const todo = {
                         txt,
@@ -157,7 +158,7 @@ function _formatNote(note) {
     }
     const newNote = {
         type,
-        isPinned: false,
+        isPinned: true,
         info
 
     };

@@ -4,3 +4,13 @@
     top: 50%;
     transform: translate(-50%, -50%);
 }
+
+.keep-edit label {
+    cursor: pointer;
+    width: 100%;
+    height: auto;
+}
+
+input[name=isPinnedChk] {
+    display: none;
+}

@@ -2,18 +2,32 @@ export default {
     props: ['note'],
     template: `
     <div class="keep-edit"  >
-    <button @click="changeSetting('isPinned')"> Pin </button>
-    <button> Style  </button>
-    <button> Edit </button>
-    <button @click="remove(note.id)">Remove</button>
+        <button > 
+        <label>
+        {{isPinnedTxt}}
+        <input type="checkbox" name="isPinnedChk" v-model="newSetting.isPinned">       
+        </label>
+        </button>
+        <button> Style  </button>
+        <button> Edit </button>
+        <button @click="remove(note.id)">Remove</button>
+        <section v-if="isOnEditMode">
+           <form @sumbit.prevent="updateNote">
+                <input type="text" v-if="newSetting.info.txt" v-model="newSetting.info.txt">
+                <input type="text" v-if="newSetting.info.title" v-model="newSetting.info.title">
+                <input type="text" v-if="newSetting.info.todos" v-model="getTodos">
+                <button>Update</button>
+           </form>
+        </section>
     </div>
 `,
     data() {
         return {
+            isOnEditMode: true,
             newSetting: {
                 isPinned: this.note.isPinned,
                 style: this.note.style,
-                info: this.note.info
+                info: this.note.info,
 
             }
         }
@@ -26,15 +40,34 @@ export default {
             this.$emit('remove', noteId);
         },
 
-        changeSetting(settingKey) {
-            if (!this.newSetting[settingKey]) {
-
-            }
+        updateNote() {
+            this.$emit()
         }
 
-    },
-    computed: {
 
+
+    },
+    watch: {
+        newSetting: {
+            handler() {
+                // console.log('Greet was modified from', oldVal.txt, 'to:', newVal.txt);
+                const data = {
+                    note: this.note,
+                    newSetting: this.newSetting
+                }
+                this.$emit('change', data)
+            },
+            deep: true
+        },
+    },
+
+    computed: {
+        isPinnedTxt() {
+            return (this.note.isPinned) ? 'Unpin' : 'pin'
+        },
+        getTodos() {
+            return this.note.info.todos.map(todo => todo.txt).join(',');
+        }
     },
     created() {
 
