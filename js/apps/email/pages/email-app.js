@@ -1,6 +1,6 @@
 import { emailService } from '../services/email.service.js'
-
 import emailList from '../cmps/email-list.js'
+import emailStatus from '../cmps/email-status.js'
 
 
 export default {
@@ -8,21 +8,37 @@ export default {
      <section class="email-app">
          
      <div class="main">
+
         <ul class="side-menu">
+
             <li class="compose">
                 <router-link to="/email/compose">Compose</router-link>
             </li> 
+
             <li class="inbox" @click="currMenu = 'inbox'">
                 <router-link to="/email">inbox</router-link>
             </li> 
+
             <li class="sent" @click="currMenu = 'sent'">
                 <router-link to="/email">sent</router-link>
             </li> 
+
             <li class="starred" @click="currMenu = 'starred'">
-                <router-link to="/email"><img src="css/icons/star.png" alt="">Starred</router-link>
+                <router-link to="/email" >Starred</router-link>
             </li> 
+
+            <!-- <email-status :percent="readPercentage"/> -->
+            
         </ul>
-        <router-view :emails="emailsToShow" @remove="removeEmail" @save="loadEmails" @filtered="setFilter" @read="updateEmail" @starred="updateEmail"/>
+
+
+        <router-view 
+        :emails="emailsToShow" 
+        @remove="removeEmail" 
+        @save="loadEmails" 
+        @filtered="setFilter"
+        @read="updateEmail" 
+        @starred="updateEmail"/>
     </div>
      </section>
     `,
@@ -75,10 +91,19 @@ export default {
             return emailsToShow;
         }
     },
+    readPercentage() {
+        let readCount = 0;
+        for (let i = 0; i < this.emails.length; i++) {
+            if (this.emails[i].isRead) readCount++
+        }
+        return Math.floor(readCount / this.emails.length * 100);
+    },
+
     created() {
         this.loadEmails()
     },
     components: {
-        emailList
+        emailList,
+        emailStatus
     }
 }
