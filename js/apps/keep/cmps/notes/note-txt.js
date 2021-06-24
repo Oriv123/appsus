@@ -3,19 +3,29 @@ export default {
     template: `
     <div class="note-txt">
         <p>
-            {{txt}}
+            {{noteTxt}}
         </p>
     </div>
 `,
     data() {
         return {
-            txt: this.data.info.txt
+
         }
     },
     methods: {
 
     },
+    watch: {
+        txt() {
+            console.log('text');
+        }
+    },
     created() {
 
+    },
+    computed: {
+        noteTxt() {
+            return this.data.info.txt;
+        }
     }
 }

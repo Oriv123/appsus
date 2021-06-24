@@ -31,7 +31,7 @@ export default {
             this.$emit('add', this.newNote);
             this.newNote = {
                 type: 'noteTxt',
-                isPinned: false,
+                isPinned: true,
                 info: {
                     value: ''
                 }

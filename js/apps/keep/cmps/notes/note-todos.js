@@ -2,9 +2,9 @@ export default {
     props: ['data'],
     template: `
         <div class="note-todos">
-                <h2>{{label}}</h2>
+                <h2>{{noteTitle}}</h2>
                     <ol class="todos-list">
-                    <li v-for="todo in todos">
+                    <li v-for="todo in noteTodos">
                         <p> {{todo.txt}} </p>
                     </li>
                     
@@ -12,12 +12,17 @@ export default {
         </div>
     `,
     data() {
-        return {
-            label: this.data.info.label,
-            todos: this.data.info.todos
-        }
+        return {}
     },
     methods: {
 
+    },
+    computed: {
+        noteTitle() {
+            return this.data.info.title;
+        },
+        noteTodos() {
+            return this.data.info.todos;
+        }
     }
 }

@@ -77,11 +77,14 @@ function addNote(note) {
         .then(note => note);
 }
 
-function editNote(note, newSetting) {
-    for (const key in newSetting) {
-        note[key] = newSetting[key];
-    }
-    return storageService.put(KEEP_KEY, note);
+function editNote(noteId, newSetting) {
+    return _getNoteById(noteId)
+        .then(note => {
+            for (const key in newSetting) {
+                note[key] = newSetting[key];
+            }
+            return storageService.put(KEEP_KEY, note);
+        })
 }
 
 function removeNote(noteId) {
@@ -90,41 +93,43 @@ function removeNote(noteId) {
 
 
 
-function getBookById(bookId) {
-    return storageService.get(BOOKS_KEY, bookId);
+// function getPrevNextBookId(bookId) {
+//     return storageService.query(BOOKS_KEY)
+//         .then(books => {
+//             const idx = books.findIndex(book => book.id === bookId)
+//             const nextBookId = (idx === books.length - 1) ? books[0].id : books[idx + 1].id
+//             const prevBookId = (idx === 0) ? books[books.length - 1].id : books[idx - 1].id
+//             return {
+//                 nextBookId,
+//                 prevBookId
+//             }
+//         });
+// }
+
+// function addReview(bookId, review) {
+//     review.id = utilitiesService.makeId();
+//     return getBookById(bookId).then(book => {
+//         if (!book.reviews) book.reviews = [];
+//         book.reviews.push(review);
+//         return storageService.put(BOOKS_KEY, book);
+//     })
+// }
+
+// function removeReview(bookId, reviewId) {
+//     return getBookById(bookId)
+//         .then(book => {
+//             const reviewIdx = book.reviews.findIndex(review => review.id === reviewId);
+//             if (reviewIdx === -1) return Promise.reject('Failed to find the review!');
+//             book.reviews.splice(reviewIdx, 1);
+//             return storageService.put(BOOKS_KEY, book);
+//         })
+// }
+
+function _getNoteById(noteId) {
+    return storageService.get(KEEP_KEY, noteId);
 }
 
-function getPrevNextBookId(bookId) {
-    return storageService.query(BOOKS_KEY)
-        .then(books => {
-            const idx = books.findIndex(book => book.id === bookId)
-            const nextBookId = (idx === books.length - 1) ? books[0].id : books[idx + 1].id
-            const prevBookId = (idx === 0) ? books[books.length - 1].id : books[idx - 1].id
-            return {
-                nextBookId,
-                prevBookId
-            }
-        });
-}
 
-function addReview(bookId, review) {
-    review.id = utilitiesService.makeId();
-    return getBookById(bookId).then(book => {
-        if (!book.reviews) book.reviews = [];
-        book.reviews.push(review);
-        return storageService.put(BOOKS_KEY, book);
-    })
-}
-
-function removeReview(bookId, reviewId) {
-    return getBookById(bookId)
-        .then(book => {
-            const reviewIdx = book.reviews.findIndex(review => review.id === reviewId);
-            if (reviewIdx === -1) return Promise.reject('Failed to find the review!');
-            book.reviews.splice(reviewIdx, 1);
-            return storageService.put(BOOKS_KEY, book);
-        })
-}
 
 
 //Sorting out the note info
@@ -149,11 +154,8 @@ function _formatNote(note) {
                     }
                     return todo;
                 })
-
-            console.log(info);
             break;
         default:
-
             break;
     }
     const newNote = {
