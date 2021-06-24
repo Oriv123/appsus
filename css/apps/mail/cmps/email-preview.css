@@ -1,6 +1,11 @@
+h4 {
+    font-weight: unset;
+}
+
 .email-preview {
     width: 100%;
     height: 50px;
+    border-bottom: solid grey 1px;
 }
 
 .email-preview h4 {
@@ -8,6 +13,7 @@
     height: 100%;
     align-items: center;
     margin-left: 1rem;
+    font-weight: bold;
     color: rgb(53, 52, 52);
 }
 
@@ -19,6 +25,7 @@
 
 .email-preview-container {
     display: flex;
+    align-items: baseline;
 }
 
 .email-preview-container a {
@@ -26,15 +33,11 @@
 }
 
 .unread {
-    background-color: #ffffffb7;
+    background-color: #ff0000b7;
 }
 
 .read {
     background-color: #ffffff77;
-}
-
-.email-preview {
-    border-bottom: solid grey 1px;
 }
 
 .email-preview:hover {

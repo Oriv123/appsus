@@ -11,15 +11,15 @@ export default {
 
         <ul class="side-menu">
 
-            <li class="compose">
+            <li class="compose fas fa-plus">
                 <router-link to="/email/compose">Compose</router-link>
             </li> 
 
-            <li class="inbox" @click="currMenu = 'inbox'">
+            <li class="inbox fas fa-inbox " @click="currMenu = 'inbox'">
                 <router-link to="/email">inbox</router-link>
             </li> 
 
-            <li class="sent" @click="currMenu = 'sent'">
+            <li class="sent fas fa-paper-plane" @click="currMenu = 'sent'">
                 <router-link to="/email">sent</router-link>
             </li> 
 

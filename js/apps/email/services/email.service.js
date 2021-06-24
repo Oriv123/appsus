@@ -7,7 +7,8 @@ export const emailService = {
     getEmptyEmail,
     getById,
     addEmail,
-    update
+    update,
+    toggleRead
 }
 
 const STORAGE_KEY = 'emailApp';
@@ -28,6 +29,20 @@ function remove(emailId) {
 
 function getById(id) {
     return storageService.get(STORAGE_KEY, id)
+}
+
+function getEmailById(id) {
+    let email = emails.find(email => email.id === id);
+    return Promise.resolve(email);
+}
+
+function toggleRead(id, isRead) {
+    console.log(isRead);
+    getEmailById(id)
+        .then(email => {
+            email.isRead = isRead;
+            saveEmails()
+        })
 }
 
 function addEmail(emailToAdd) {
