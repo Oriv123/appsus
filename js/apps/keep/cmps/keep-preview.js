@@ -1,6 +1,7 @@
 import noteTxt from "./notes/note-txt.js";
 import noteImg from "./notes/note-img.js";
 import noteTodos from "./notes/note-todos.js";
+import noteVideo from "./notes/note-video.js";
 
 export default {
     props: ['note'],
@@ -19,7 +20,8 @@ export default {
     components: {
         noteTxt,
         noteImg,
-        noteTodos
+        noteTodos,
+        noteVideo
     }
 
 };

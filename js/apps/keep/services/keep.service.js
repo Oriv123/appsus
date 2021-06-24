@@ -34,8 +34,8 @@ const defaultNotes = [{
             title: 'Me playing Mi'
         },
         style: {
-            backgroundColor: '#292929',
-            color: 'red'
+            backgroundColor: 'purple',
+            color: 'blue'
         }
     },
     {
@@ -50,10 +50,24 @@ const defaultNotes = [{
             ]
         },
         style: {
-            backgroundColor: '#292929',
+            backgroundColor: 'yellow',
             color: 'red'
         }
-    }
+    },
+    {
+        id: utilitiesService.makeId(),
+        type: 'noteVideo',
+        isPinned: true,
+        info: {
+
+            url: 'https://www.youtube.com/watch?v=bpQloJTPnE8',
+            title: 'Coding Academy'
+        },
+        style: {
+            backgroundColor: 'blue',
+            color: 'red'
+        }
+    },
 ];
 
 
@@ -142,6 +156,7 @@ function _formatNote(note) {
             info.txt = note.info.value;
             break;
         case 'noteImg':
+        case 'noteVideo':
             info.title = 'Edit Title',
                 info.url = note.info.value;
             break;
