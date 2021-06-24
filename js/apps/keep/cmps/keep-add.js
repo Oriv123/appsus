@@ -8,6 +8,7 @@ export default {
          <button @click="changeNoteType('noteTxt')" title="Add text" >text</button>
          <button @click="changeNoteType('noteImg')" title="Add image URL">img</button>
          <button @click="changeNoteType('noteTodos')" title="Add todos, seperated by commas">todo</button>
+         <button @click="changeNoteType('noteVideo')" title="Add youtube URL">youtube video</button>
 
         </section>
     `,
@@ -50,6 +51,8 @@ export default {
 
                 case 'noteTodos':
                     return 'Enter comma seperated list';
+                case 'noteVideo':
+                    return 'Enter youtube URL'
 
                 default:
                     return 'error';

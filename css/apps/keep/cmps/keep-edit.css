@@ -1,14 +1,3 @@
-.keep-edit {
-    position: absolute;
-    bottom: 0%;
-}
-
-.keep-edit label {
-    cursor: pointer;
-    width: 100%;
-    height: auto;
-}
-
-input[name=isPinnedChk] {
-    /* display: none; */
+.pinned {
+    color: red;
 }
