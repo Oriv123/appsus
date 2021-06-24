@@ -28,6 +28,10 @@ const routes = [{
                 component: emailCompose
             },
             {
+                path: 'compose/:emailId',
+                component: emailCompose
+            },
+            {
                 path: ':emailId',
                 component: emailDetails
             }

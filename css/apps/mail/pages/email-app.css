@@ -66,13 +66,23 @@
     margin-right: 10px;
 }
 
-.starred a {
-    display: flex;
+.email-app .side-menu .starred::before {
+    font-family: regular;
+    content: "\f005";
+    color: black;
+    margin-top: 5px;
+    margin-right: 10px;
 }
 
-.starred img {
-    width: 19px;
-    margin-right: 8px;
+.star:hover,
+.starred {
+    color: orange;
+    cursor: pointer;
+}
+
+.star:hover,
+.selected {
+    color: orange;
 }
 
 .email-app .side-menu li:hover:not(:first-child) {
@@ -80,6 +90,26 @@
     border-radius: 10px 50px 50px 10px;
 }
 
-.email-app a {
-    text-decoration: none;
+.myStatus {
+    width: 90%;
+    margin: 0 auto;
+    background-color: #e9ecef;
+    height: 20px;
+    font: 1rem;
+    position: relative
+}
+
+.myStatus p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.myBar {
+    width: 1%;
+    height: 20px;
+    text-align: center;
+    background-size: 20px 20px;
+    background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent)
 }
