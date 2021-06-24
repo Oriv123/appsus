@@ -11,7 +11,10 @@ export default {
     data() {
         return {
             newSetting: {
-                isPinned: this.note.isPinned
+                isPinned: this.note.isPinned,
+                style: this.note.style,
+                info: this.note.info
+
             }
         }
     },
@@ -24,7 +27,9 @@ export default {
         },
 
         changeSetting(settingKey) {
-            // if (!this.newSetting[settingKey])
+            if (!this.newSetting[settingKey]) {
+
+            }
         }
 
     },
