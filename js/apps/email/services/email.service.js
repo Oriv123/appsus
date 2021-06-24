@@ -37,7 +37,6 @@ function getEmailById(id) {
 }
 
 function toggleRead(id, isRead) {
-    console.log(isRead);
     getEmailById(id)
         .then(email => {
             email.isRead = isRead;

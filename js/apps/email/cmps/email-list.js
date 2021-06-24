@@ -7,11 +7,13 @@ export default {
     template: ` 
     <section class="email-list-container">
         <email-filter @filtered="setFilter"/>
+    
+
         <ul class="email-list">
             <li v-for="email in emails" :key="email.id" class="email-preview-container">
                 <div class="star-list modify-container">
-                    <span class="star star-1 fa fa-star" :class="{starred: email.isStarred}" @click="toggleStarred(email)"></span>
-                    <input type="checkbox" id="checkbox" @click="toggleRead(email)">
+                <!-- <span class="star star-1 fa fa-star" :class="{starred: email.isStarred}" @click="toggleStarred(email)"></span> -->
+                    <!-- <input type="checkbox" id="checkbox" @click="toggleRead(email)"> -->
                 </div>
                 <router-link :to="'/email/'+email.id">
                     <email-preview :email="email" @read="setEmailToRead"/>

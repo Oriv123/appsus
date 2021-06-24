@@ -4,21 +4,24 @@ export default {
     template: `
         <section class="email-preview" :class="toggleClass" @click="updateIfRead">
 
-			<span class="from">{{email.from.substring(0, '@')}}</span>  
+			<div class="from">
+                <!-- {{email.from}} -->
+            ori zaken
+            </div>  
 
-            <span class="content">
+            <div class="content">
                 {{email.subject}}
-                </span>
+                </div>
                 
-                 <span class="email-desc">
+                 <div class="email-desc">
                 {{email.body.substring(0, 30)}}...
-            </span>
-            </span>
+            </div>
+            </div>
             
 
-                <span class="sent-at">
+                <div class="sent-at">
 				{{sentAt}}
-			    </span>
+			    </div>
         </section>
         `,
     methods: {
