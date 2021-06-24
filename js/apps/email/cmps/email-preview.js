@@ -4,36 +4,58 @@ export default {
     template: `
         <section class="email-preview" :class="toggleClass" @click="updateIfRead">
 
-			<div class="from">
-                <!-- {{email.from}} -->
-            ori zaken
+        <div class="star" :class="{starred: email.isStarred}" @click.stop.prevent="toggleStarred(email)">
+        <i class="fas fa-star"></i>
+        </div>
+
+			<div class="from" :class="{bold: !this.email.isRead}"> 
+                {{email.from}}
             </div>  
 
-            <div class="content">
+            <div class="content " :class="{bold: !this.email.isRead}" >
                 {{email.subject}}
                 </div>
                 
                  <div class="email-desc">
                 {{email.body.substring(0, 30)}}...
             </div>
-            </div>
             
 
                 <div class="sent-at">
 				{{sentAt}}
 			    </div>
+
+                <div>
+             <span 
+             @click.stop="deleteMail(email.id)" 
+             class="mail-trash" > 
+             <i class="far fa-trash-alt"></i> 
+            </span> 
+        </div>
+
+        <!-- <div>
+             <span 
+             @click.stop="restoreMail(email.id)" 
+             class="mail-trash" v-if="folder==='trash'"
+             ><i class="fas fa-undo"></i> 
+            </span>
+            </div> -->
+
         </section>
         `,
     methods: {
         updateIfRead() {
             if (!this.email.isRead) this.email.isRead = true;
             this.$emit('read', this.email)
+        },
+        toggleStarred(email) {
+            email.isStarred = !email.isStarred
+            this.$emit('starred', email)
         }
     },
     computed: {
         toggleClass() {
-            console.log(this.email);
-            return this.email.isRead ? 'read' : 'unread'
+            return this.email.isRead ? 'read ' : 'unread '
 
         },
         sentAt() {

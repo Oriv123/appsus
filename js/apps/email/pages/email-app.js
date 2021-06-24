@@ -45,7 +45,10 @@ export default {
     data() {
         return {
             emails: [],
-            filterBy: null,
+            filterBy: {
+                txt: '',
+
+            },
             currMenu: 'inbox'
         }
     },
@@ -82,11 +85,21 @@ export default {
                     return email.isStarred === true
                 })
             }
-            if (this.filterBy && this.filterBy.byName) {
+            // if (this.filterBy && this.filterBy.byName) {
+            // const searchStr = this.filterBy.byName.toLowerCase()
+            //     emailsToShow = this.emails.filter(email => { return email.subject.toLowerCase().includes(searchStr) || email.body.toLowerCase().includes(searchStr) })
+
+            if (this.filterBy.kind === 'All') {
                 const searchStr = this.filterBy.byName.toLowerCase()
-                emailsToShow = this.emails.filter(email => {
-                    return email.subject.toLowerCase().includes(searchStr) || email.body.toLowerCase().includes(searchStr)
-                })
+                emailsToShow = this.emails.filter(email => { return email.subject.toLowerCase().includes(searchStr) || email.body.toLowerCase().includes(searchStr) })
+
+            } else if (this.filterBy.kind === 'Unread') {
+                const searchStr = this.filterBy.byName.toLowerCase()
+                emailsToShow = this.emails.filter(email => { return (!email.isRead) && (email.subject.toLowerCase().includes(searchStr) || email.body.toLowerCase().includes(searchStr)) })
+
+            } else if (this.filterBy.kind === 'Read') {
+                const searchStr = this.filterBy.byName.toLowerCase()
+                emailsToShow = this.emails.filter(email => { return (email.isRead) && (email.subject.toLowerCase().includes(searchStr) || email.body.toLowerCase().includes(searchStr)) })
             }
             return emailsToShow;
         }

@@ -90,7 +90,7 @@ function _createEmails() {
             },
             {
                 id: utilitiesService.makeId(),
-                subject: '',
+                subject: 'GoodJob',
                 body: `'Hi! this would be ou email`,
                 isRead: false,
                 sentAt: 1451133635584,

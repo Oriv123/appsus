@@ -1,5 +1,8 @@
 * {
     box-sizing: border-box;
+    border: 3px;
+    border-color: rgb(20, 16, 255);
+    border-style: double;
 }
 
 html {
