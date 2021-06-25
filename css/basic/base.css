@@ -6,7 +6,7 @@
 }
 
 html {
-    color: #4f4e4e;
+    /* color: #4f4e4e; */
     line-height: 1.5;
 }
 
@@ -26,7 +26,6 @@ button {
 
 a {
     text-decoration: none;
-    /* color: white; */
 }
 
 ul {
