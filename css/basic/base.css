@@ -1,5 +1,8 @@
 * {
     box-sizing: border-box;
+    /* border: 3px;
+    border-color: rgb(20, 16, 255);
+    border-style: double; */
 }
 
 html {
@@ -9,7 +12,7 @@ html {
 
 body {
     margin: 0;
-    background-color: #DEE1EC;
+    background-color: #e8e8e8;
 }
 
 img {

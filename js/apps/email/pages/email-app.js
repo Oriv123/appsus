@@ -23,8 +23,12 @@ export default {
                 <router-link to="/email">sent</router-link>
             </li> 
 
-            <li class="starred" @click="currMenu = 'starred'">
+            <li class="starred fas fa-star" @click="currMenu = 'starred'">
                 <router-link to="/email" >Starred</router-link>
+            </li> 
+
+            <li class="drafts fas fa-file" @click="currMenu = 'drafts'">
+                <router-link to="/email" >Drafts</router-link>
             </li> 
 
             <!-- <email-status :percent="readPercentage"/> -->
@@ -46,7 +50,8 @@ export default {
         return {
             emails: [],
             filterBy: {
-                txt: '',
+                byName: '',
+                kind: '',
 
             },
             currMenu: 'inbox'
@@ -63,7 +68,10 @@ export default {
         removeEmail(emailId) {
             emailService.remove(emailId)
                 .then(this.loadEmails)
-                .then(this.$router.push('/email'))
+                .then(() => {
+                    const id = this.$route.params.emailId;
+                    if (id) this.$router.push('/email');
+                })
         },
         updateEmail(updatedEmail) {
             emailService.update(updatedEmail)
@@ -80,14 +88,11 @@ export default {
                 var emailsToShow = this.emails.filter(email => {
                     return email.to !== 'appsus@ca.com'
                 })
-            } else {
+            } else if (this.currMenu === 'starred') {
                 var emailsToShow = this.emails.filter(email => {
                     return email.isStarred === true
                 })
-            }
-            // if (this.filterBy && this.filterBy.byName) {
-            // const searchStr = this.filterBy.byName.toLowerCase()
-            //     emailsToShow = this.emails.filter(email => { return email.subject.toLowerCase().includes(searchStr) || email.body.toLowerCase().includes(searchStr) })
+            } else if (this.currMenu === 'drafts') {}
 
             if (this.filterBy.kind === 'All') {
                 const searchStr = this.filterBy.byName.toLowerCase()
@@ -102,15 +107,16 @@ export default {
                 emailsToShow = this.emails.filter(email => { return (email.isRead) && (email.subject.toLowerCase().includes(searchStr) || email.body.toLowerCase().includes(searchStr)) })
             }
             return emailsToShow;
-        }
+        },
+        readPercentage() {
+            let readCount = 0;
+            for (let i = 0; i < this.emails.length; i++) {
+                if (this.emails[i].isRead) readCount++
+            }
+            return Math.floor(readCount / this.emails.length * 100);
+        },
     },
-    readPercentage() {
-        let readCount = 0;
-        for (let i = 0; i < this.emails.length; i++) {
-            if (this.emails[i].isRead) readCount++
-        }
-        return Math.floor(readCount / this.emails.length * 100);
-    },
+
 
     created() {
         this.loadEmails()

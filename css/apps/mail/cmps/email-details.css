@@ -1,9 +1,7 @@
 .email-details {
-    width: 100%;
+    background-color: white;
+    padding: 0px 20px 40px 20px;
     position: relative;
-    margin-left: 1rem;
-    margin-top: 0.5rem;
-    text-align: left;
 }
 
 .email-details>:first-child {
