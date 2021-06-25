@@ -1,10 +1,11 @@
 .email-list {
     display: flex;
     flex-direction: column;
+    /* gap: 1px; */
 }
 
 .email-list-container {
-    width: 100%;
+    flex: 1;
 }
 
 .email-list-container .email-list .email-preview-container a {

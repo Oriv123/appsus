@@ -25,11 +25,13 @@ export default {
 			 {{sentAt}}
 			</div>
 
-            <div>
-             <span 
-             @click.prevent="removeEmail(email.id)">
+            <div class="trash">
+             <span @click.prevent="removeEmail(email.id)">
              <i class="far fa-trash-alt"></i> 
              </span> 
+            </div>
+
+            <div class="envelope" :class="toggleIcon" @click.stop.prevent="toggleIsRead">
             </div>
 
         <!-- <div>
@@ -53,13 +55,21 @@ export default {
         },
         removeEmail(emailId) {
             this.$emit('remove', emailId);
-        }
+        },
+        toggleIsRead() {
+            return !this.email.isRead ? this.email.isRead = true : this.email.isRead = false;
+        },
+
+
     },
     computed: {
         toggleClass() {
             return this.email.isRead ? 'read ' : 'unread '
-
         },
+        toggleIcon() {
+            return this.email.isRead ? 'fas fa-envelope-open' : 'fas fa-envelope '
+        },
+
         sentAt() {
             let currDate = moment(Date.now())
             let emailDate = moment(this.email.sentAt)

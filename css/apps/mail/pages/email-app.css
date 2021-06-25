@@ -5,6 +5,7 @@
 @import '../cmps/email-compose.css';
 .email-app {
     background-color: #DEE1EC;
+    /* max-width: 1400px; */
     width: 100%;
     margin: 0 auto;
     height: fit-content;
@@ -12,9 +13,9 @@
 }
 
 .email-app .main {
-    min-height: 80vh;
-    padding: 0 0.25rem;
-    background-color: rgb(0, 0, 0, 0.05);
+    min-height: 60vh;
+    /* padding: 0 0.25rem; */
+    /* background-color: rgb(0, 0, 0, 0.05); */
     margin: 0 auto;
     display: flex;
     width: 90%;
@@ -25,19 +26,17 @@
     margin-right: 0.5rem;
     display: flex;
     flex-direction: column;
-    width: 150px;
+    width: 10em;
 }
 
 .email-app .side-menu li {
     display: flex;
     align-items: center;
-    width: 100px;
-    height: 30px;
-    font-size: 15px;
+    width: 10em;
+    height: 2em;
     padding: 5px;
     border-radius: 10px 50px 50px 10px;
     text-transform: capitalize;
-    font-weight: bold;
     cursor: pointer;
 }
 
@@ -46,7 +45,7 @@
 }
 
 .email-app .side-menu .compose {
-    background-color: #DEE1EC;
+    background-color: orange;
     border-radius: 50px;
     margin-bottom: 20px;
     margin-top: 20px;
@@ -95,13 +94,13 @@
 }
 
 .email-app .side-menu li:hover:not(:first-child) {
-    background-color: #DEE1EC;
+    background-color: orange;
     border-radius: 10px 50px 50px 10px;
 }
 
 .myStatus {
     width: 90%;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     background-color: #e9ecef;
     height: 20px;
     font: 1rem;

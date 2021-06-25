@@ -29,11 +29,13 @@ export default {
 
             <li class="drafts fas fa-file" @click="currMenu = 'drafts'">
                 <router-link to="/email" >Drafts</router-link>
-            </li> 
-
-            <!-- <email-status :percent="readPercentage"/> -->
+            </li>
             
+            <email-status 
+            :percent="readPercentage"/>
         </ul>
+
+            
 
 
         <router-view 
@@ -114,10 +116,8 @@ export default {
                 if (this.emails[i].isRead) readCount++
             }
             return Math.floor(readCount / this.emails.length * 100);
-        },
+        }
     },
-
-
     created() {
         this.loadEmails()
     },

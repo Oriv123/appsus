@@ -75,7 +75,7 @@ export default {
                     email.isRead = false;
                     email.isStarred = false;
                     email.subject = 'Re: ' + email.subject
-                    email.body = email.body + "\n" + '---------------------------------------------------------' + "\n"
+                    email.body = email.body + "\n" + '---------------------------------------------------------------------------------' + "\n"
                     this.email = email
                 })
         } else this.email = emailService.getEmptyEmail()
