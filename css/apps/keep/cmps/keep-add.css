@@ -1,6 +1,37 @@
-.keep-add {
-    margin: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
+            .keep-add {
+                margin: 20px;
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+                background-color: #fff;
+                border-radius: 10px;
+                width: fit-content;
+                margin: 1.5rem auto;
+            }
+            
+            .keep-add * {
+                font-size: 1.2rem;
+            }
+            
+            .keep-add input {
+                padding: 0.5em 1em;
+                line-height: 1.5;
+                height: fit-content;
+                outline: none;
+                border: none;
+            }
+            
+            .keep-add button {
+                background-color: transparent;
+                border: none;
+                opacity: 0.5;
+            }
+            
+            .keep-add button:hover,
+            .keep-add button.selectedType {
+                opacity: 1;
+            }
+            
+            .keep-add button.selectedType {
+                color: orange;
+            }

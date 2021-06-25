@@ -5,10 +5,10 @@ export default {
 
 
          <input type="text"  :placeholder="noteTypePlaceHolder" @keyup.enter="addNote" v-model="newNote.info.value" />
-         <button @click="changeNoteType('noteTxt')" title="Add text" >text</button>
-         <button @click="changeNoteType('noteImg')" title="Add image URL">img</button>
-         <button @click="changeNoteType('noteTodos')" title="Add todos, seperated by commas">todo</button>
-         <button @click="changeNoteType('noteVideo')" title="Add youtube URL">youtube video</button>
+         <button v-for="noteType in noteTypes" @click="changeNoteType(noteType.type)" :title="noteType.title" :class="isNoteSelected(noteType.type)" >
+             <i :class="noteType.iconClasses"> </i>
+         </button>
+
 
         </section>
     `,
@@ -21,12 +21,41 @@ export default {
                 info: {
                     value: ''
                 }
-            }
+            },
+            notesTypes: []
         }
     },
     methods: {
+        getNotesTypes() {
+            const notesTypes = [{
+                    type: 'noteTxt',
+                    title: 'Free text',
+                    iconClasses: 'fas fa-font',
+                },
+                {
+                    type: 'noteImg',
+                    title: 'Enter image URL',
+                    iconClasses: 'far fa-image'
+                },
+                {
+                    type: 'noteTodos',
+                    title: 'Enter comma seperated list',
+                    iconClasses: 'fas fa-list-ol'
+                },
+                {
+                    type: 'noteVideo',
+                    title: 'Enter Youtube video URL',
+                    iconClasses: 'fab fa-youtube'
+                },
+
+            ]
+            return notesTypes;
+        },
         changeNoteType(noteType) {
             this.newNote.type = noteType;
+        },
+        isNoteSelected(type) {
+            return type === this.newNote.type ? 'selectedType' : '';
         },
         addNote() {
             this.$emit('add', this.newNote);
@@ -52,18 +81,19 @@ export default {
                 case 'noteTodos':
                     return 'Enter comma seperated list';
                 case 'noteVideo':
-                    return 'Enter youtube URL'
+                    return 'Enter youtube video URL';
 
                 default:
                     return 'error';
             }
-        }
+        },
+
     },
     components: {
 
     },
     created() {
-
+        this.noteTypes = this.getNotesTypes();
     },
     destroyed() {
 

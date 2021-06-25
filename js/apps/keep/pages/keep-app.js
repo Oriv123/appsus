@@ -10,11 +10,11 @@ export default {
                 <!-- <book-filter @filtered="setFilter"> </book-filter> -->
               <section v-if="pinnedNotes.length">
               <h2>Pinned Notes:</h2>
-                 <keep-list  :notes="pinnedNotes" @remove="removeNote" @change="changeSetting"/>
+                 <keep-list  :notes="pinnedNotes" @remove="removeNote" @change="changeSetting"  @toggleTodo="toggleTodo"/>
               </section>
                 <section v-if="unPinnedNotes.length">
                 <h2>Unpinned Notes:</h2>
-                 <keep-list  :notes="unPinnedNotes" @remove="removeNote" @change="changeSetting"/>
+                 <keep-list  :notes="unPinnedNotes" @remove="removeNote" @change="changeSetting"  @toggleTodo="toggleTodo"/>
                 </section>
                </main>
     `,
@@ -66,6 +66,12 @@ export default {
                     this.loadNotes()
                 })
 
+        },
+        toggleTodo(data) {
+            keepService.editTodo(data.noteId, data.todoId)
+                .then(() => {
+                    this.loadNotes();
+                })
         }
         // setFilter(filterBy) {
         //     if (!filterBy.maxPrice) filterBy.maxPrice = Infinity;

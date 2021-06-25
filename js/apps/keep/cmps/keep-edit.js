@@ -16,10 +16,10 @@ export default {
        </button>
         <section v-if="isOnEditMode" class="edit-section">
            <form @submit="updateNote">
-                <input type="text" v-if="newSetting.info.txt" v-model="newSetting.info.txt">
-                <input type="text" v-if="newSetting.info.title" v-model="newSetting.info.title">
-                <input type="text" v-if="newSetting.info.url" v-model="newSetting.info.url">
-                <input type="text" name="todo" v-if="newSetting.info.todos" v-model="newSetting.todosStr">
+                <input type="text" v-if="newSetting.txt" v-model="newSetting.txt">
+                <input type="text" v-if="newSetting.title" v-model="newSetting.title">
+                <input type="text" v-if="newSetting.url" v-model="newSetting.url">
+                <input type="text" name="todo" v-if="newSetting.todos" v-model="newSetting.todos">
                 <button>Update</button>
            </form>
         </section>
@@ -29,10 +29,7 @@ export default {
         return {
             isOnEditMode: false,
             newSetting: {
-                isPinned: this.note.isPinned,
-                style: this.note.style,
-                info: {...this.note.info },
-                todosStr: ''
+
             }
         }
     },
@@ -44,10 +41,10 @@ export default {
         },
 
         updateNote() {
-            if (this.newSetting.info.todos) {
+            // if (this.newSetting.info.todos) {
 
-                this.newSetting.info.todos = this.formattedTodos;
-            }
+            //     this.newSetting.info.todos = this.formattedTodos;
+            // }
             const data = {
                 noteId: this.note.id,
                 newSetting: this.newSetting
@@ -55,6 +52,7 @@ export default {
 
             this.$emit('change', data);
             this.isOnEditMode = false;
+            this.newSetting = {};
         },
         toggleEditMode() {
             this.isOnEditMode = !this.isOnEditMode;
@@ -80,8 +78,9 @@ export default {
 
         },
         formattedTodos() {
-            const todos = this.newSetting.todosStr.split(',').map(txt => {
+            const todos = this.newSetting.todosStr.split(',').map((txt, idx) => {
                 const todo = {
+
                     txt,
                     doneAt: null
                 }
@@ -95,11 +94,38 @@ export default {
 
 
     },
+    watch: {
+        note: {
+            handler() {
+                this.newSetting.isPinned = this.note.isPinned
+                const { type } = this.note;
+                switch (type) {
+                    case 'noteTxt':
+                        this.newSetting.txt = this.note.info.txt;
+                        break;
+                    case 'noteImg':
+                    case 'noteVideo':
+                        this.newSetting.title = this.note.info.title;
+                        this.newSetting.url = this.note.info.url;
+                        break
+                    case 'noteTodos':
+                        this.newSetting.todos = this.stringifiedTodos;
+                        break
+
+                    default:
+                        break;
+                }
+            },
+            immediate: true,
+            deep: true
+        }
+    },
 
     created() {
-        if (this.note.info.todos) {
-            this.newSetting.todosStr = this.stringifiedTodos;
-        }
+
+        // if (this.note.info.todos) {
+        //     this.newSetting.todosStr = this.stringifiedTodos;
+        // }
     },
 
 }

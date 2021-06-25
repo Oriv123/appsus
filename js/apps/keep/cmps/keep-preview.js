@@ -6,13 +6,22 @@ import noteVideo from "./notes/note-video.js";
 export default {
     props: ['note'],
     template: `
-    <div class="note-preview">
-    <component :is="note.type"  :data="note">
+    <div class="keep-preview">
+    <component :is="note.type"  :data="note" @toggleTodo="toggleTodo">
    </component>
     </div>
     `,
     computed: {
 
+    },
+    methods: {
+        toggleTodo(todoId) {
+            const data = {
+                noteId: this.note.id,
+                todoId
+            }
+            this.$emit('toggleTodo', data);
+        }
     },
 
     created() {},

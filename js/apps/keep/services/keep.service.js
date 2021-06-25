@@ -9,7 +9,8 @@ export const keepService = {
         query,
         addNote,
         editNote,
-        removeNote
+        editTodo,
+        removeNote,
 
     }
     //TODO: Check the todos app from MVC class
@@ -45,8 +46,8 @@ const defaultNotes = [{
         info: {
             title: 'How was it:',
             todos: [
-                { txt: 'Do that', doneAt: null },
-                { txt: 'Do this', doneAt: 187111111 }
+                { id: utilitiesService.makeId(), txt: 'Do that', doneAt: null },
+                { id: utilitiesService.makeId(), txt: 'Do this', doneAt: 187111111 }
             ]
         },
         style: {
@@ -60,7 +61,7 @@ const defaultNotes = [{
         isPinned: true,
         info: {
 
-            url: 'https://www.youtube.com/watch?v=bpQloJTPnE8',
+            url: 'https://www.youtube.com/watch?v=tgbNymZ7vqY',
             title: 'Coding Academy'
         },
         style: {
@@ -86,7 +87,7 @@ function query() {
 }
 
 function addNote(note) {
-    const newNote = _formatNote(note);
+    const newNote = _formatNewNote(note.type, note.info);
     return storageService.post(KEEP_KEY, newNote)
         .then(note => note);
 }
@@ -94,9 +95,19 @@ function addNote(note) {
 function editNote(noteId, newSetting) {
     return _getNoteById(noteId)
         .then(note => {
-            for (const key in newSetting) {
-                note[key] = newSetting[key];
-            }
+
+            const modifiedNote = _formatNote(note, newSetting);
+            return storageService.put(KEEP_KEY, modifiedNote);
+        })
+}
+
+function editTodo(noteId, todoId) {
+    return _getNoteById(noteId)
+        .then(note => {
+            if (!note.info.todos) return Promise.reject('error finding todos');
+            const todo = note.info.todos.find(todo => todo.id === todoId);
+            if (todo.doneAt) todo.doneAt = null;
+            else todo.doneAt = Date.now();
             return storageService.put(KEEP_KEY, note);
         })
 }
@@ -143,34 +154,27 @@ function _getNoteById(noteId) {
     return storageService.get(KEEP_KEY, noteId);
 }
 
-
-
-
-//Sorting out the note info
-function _formatNote(note) {
-
-    const { type } = note;
-    const info = {};
+function _formatNewNote(type, setting) {
+    const info = {}
     switch (type) {
         case 'noteTxt':
-            info.txt = note.info.value;
+            info.txt = setting.value;
             break;
         case 'noteImg':
         case 'noteVideo':
-            info.title = 'Edit Title',
-                info.url = note.info.value;
+            info.title = 'New note'
+            info.url = setting.value
             break;
         case 'noteTodos':
-            info.title = 'Edit title',
-                info.todos = note.info.value.split(',').map(txt => {
-                    const todo = {
-                        txt,
-                        doneAt: null
-                    }
-                    return todo;
-                })
-            break;
-        default:
+            info.title = 'New note';
+            info.todos = setting.value.split(',').map(txt => {
+                const todo = {
+                    id: setting.id || utilitiesService.makeId(),
+                    txt,
+                    doneAt: setting.doneAt
+                }
+                return todo;
+            })
             break;
     }
     const newNote = {
@@ -180,6 +184,36 @@ function _formatNote(note) {
 
     };
     return newNote;
+
+}
+
+
+//Sorting out the note info
+function _formatNote(note, setting) {
+
+    note.isPinned = setting.isPinned;
+    switch (note.type) {
+        case 'noteTxt':
+            note.info.txt = setting.txt
+            break;
+        case 'noteImg':
+        case 'noteVideo':
+            note.info.title = setting.title,
+                note.info.url = setting.url
+            break;
+        case 'noteTodos':
+            note.info.title = setting.title,
+                note.info.todos = setting.todos.split(',').map(txt => {
+                    const todo = {
+                        id: setting.id || utilitiesService.makeId(),
+                        txt,
+                        doneAt: setting.doneAt
+                    }
+                    return todo;
+                })
+            break;
+    }
+    return note;
 
 
 
