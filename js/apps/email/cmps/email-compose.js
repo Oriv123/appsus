@@ -16,9 +16,13 @@ export default {
                 <label for="subject">Subject: </label>
                 <input id="subject" placeholder="Subject" type="text" v-model="email.subject">
             </div>
+
             <div>
-                <textarea rows="10" cols="50" id="body" placeholder="Type in your words" type="text" v-model="email.body"></textarea>
+                <textarea class="textArea" rows="10" cols="30" id="body" placeholder="Type in your words" type="text" v-model="email.body" wrap="hard" >
+                </textarea>
+                <!-- <pre>{{email.body}}</pre> -->
             </div>
+
             </div>
             <div class="compose-button-container">
                 <button type="submit" class="save">Save</button>
@@ -75,7 +79,7 @@ export default {
                     email.isRead = false;
                     email.isStarred = false;
                     email.subject = 'Re: ' + email.subject
-                    email.body = email.body + "\n" + '---------------------------------------------------------------------------------' + "\n"
+                    email.body = email.body
                     this.email = email
                 })
         } else this.email = emailService.getEmptyEmail()

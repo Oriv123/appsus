@@ -16,7 +16,10 @@ export default {
             <p>To: {{email.to}}</p>
         </div>
 
-        <div class="body" v-html="email.body"></div>
+        <div class="body" >
+            <p>{{email.body}}</p>
+
+        </div>
 
         <p class="details-timestamp">Sent at {{formattedTime}}</p>
         <div class="details-button-container">

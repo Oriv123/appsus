@@ -13,11 +13,11 @@ export default {
             </div>  
 
             <div class="content " :class="{bold: !this.email.isRead}" >
-                {{email.subject}}
+                {{email.subject.substring(0, 10)}}...
             </div>
                 
             <div class="email-desc">
-                {{email.body.substring(0, 30)}}...
+                {{email.body.substring(0, 20)}}...
             </div>
             
 
