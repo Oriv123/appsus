@@ -6,6 +6,7 @@
                 border-radius: 10px;
                 width: fit-content;
                 margin: 1.5rem auto;
+                max-width: 100%;
             }
             
             .keep-add * {
@@ -13,7 +14,7 @@
             }
             
             .keep-add input {
-                padding: 0.5em 1em;
+                padding: 0.5em 1.4em;
                 line-height: 1.5;
                 height: fit-content;
                 outline: none;
@@ -25,6 +26,10 @@
                 background-color: transparent;
                 border: none;
                 opacity: 0.5;
+            }
+            
+            .keep-add button:last-of-type {
+                padding-right: 5px;
             }
             
             .keep-add button:hover,

@@ -143,10 +143,12 @@ function _formatNewNote(type, setting) {
             })
             break;
     }
+    const style = { color: '#292929', backgroundColor: '#ffffff' };
     const newNote = {
         type,
         isPinned: true,
-        info
+        info,
+        style
 
     };
     return newNote;
@@ -157,9 +159,8 @@ function _formatNewNote(type, setting) {
 function _formatNote(note, setting) {
 
     note.isPinned = setting.isPinned;
-    console.log(setting.style);
-    note.style = {...setting.style };
-    console.log(note.style);
+    const { color, backgroundColor } = setting.style;
+    note.style = { color, backgroundColor };
     switch (note.type) {
         case 'noteTxt':
             note.info.txt = setting.txt
@@ -171,11 +172,15 @@ function _formatNote(note, setting) {
             break;
         case 'noteTodos':
             note.info.title = setting.title,
-                note.info.todos = setting.todos.split(',').map(txt => {
+                //TODO: Should be based id not idx
+                note.info.todos = setting.todos.split(',').map((txt, idx) => {
+                    let doneAt = null;
+                    const currTodo = note.info.todos[idx];
+                    if (currTodo) doneAt = currTodo.doneAt;
                     const todo = {
-                        id: setting.id || utilitiesService.makeId(),
+                        id: (currTodo) ? currTodo.id : utilitiesService.makeId(),
                         txt,
-                        doneAt: setting.doneAt
+                        doneAt
                     }
                     return todo;
                 })

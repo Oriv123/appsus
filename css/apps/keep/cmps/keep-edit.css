@@ -1,3 +1,11 @@
 .keep-edit {
     padding: 10px;
 }
+
+.keep-edit input {
+    max-width: 100%;
+}
+
+.keep-edit button:hover {
+    background-color: #BECBFF;
+}

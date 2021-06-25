@@ -5,7 +5,6 @@ export default {
         <button @click="togglePin" :class="pinToggeling" :title="pinText"> 
         <i class="fas fa-thumbtack"></i>
         </button> 
-        <!-- TODO: Add style edit-background and color -->
         <button title="Change color" @click="toggleColorMode" :class="colorToggeling"> 
             <i class="fas fa-tint"></i>
           </button>
@@ -16,11 +15,12 @@ export default {
        <i class="fas fa-trash"></i>
        </button>
         <section v-if="isOnEditMode" class="edit-section">
+          
            <form @submit.prevent="updateNote">
                 <input type="text" v-if="checkIfEmpty(newSetting.txt)" v-model="newSetting.txt">
                 <input type="text" v-if="checkIfEmpty(newSetting.title)" v-model="newSetting.title">
                 <input type="text" v-if="checkIfEmpty(newSetting.url)" v-model="newSetting.url">
-                <input type="text" name="todo" v-if="newSetting.todos" v-model="newSetting.todos">
+                <input type="text" name="todo" v-if="checkIfEmpty(newSetting.todos)" v-model="newSetting.todos">
                 <button>Update</button>
            </form>
         </section>
@@ -53,7 +53,6 @@ export default {
             if (!isAccepted) return;
             this.$emit('remove', noteId);
         },
-
         updateNote() {
             const data = {
                 noteId: this.note.id,
@@ -61,7 +60,6 @@ export default {
             }
             this.$emit('change', data);
             this.isOnEditMode = false;
-            this.newSetting = { isPinned: this.note.isPinned, style: this.note.style };
         },
         toggleEditMode() {
             this.isOnEditMode = !this.isOnEditMode;
@@ -98,17 +96,7 @@ export default {
             return this.note.info.todos.map(todo => todo.txt).join(',');
 
         },
-        formattedTodos() {
-            const todos = this.newSetting.todosStr.split(',').map((txt, idx) => {
-                const todo = {
 
-                    txt,
-                    doneAt: null
-                }
-                return todo;
-            })
-            return todos;
-        },
         pinText() {
             return (this.newSetting.isPinned) ? 'Unpin' : 'pin';
         }
@@ -118,8 +106,8 @@ export default {
     watch: {
         note: {
             handler() {
-
                 const { type } = this.note;
+                console.log(this.note.style.color);
                 switch (type) {
                     case 'noteTxt':
                         this.newSetting.txt = this.note.info.txt;

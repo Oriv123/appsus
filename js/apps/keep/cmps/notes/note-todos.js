@@ -2,7 +2,7 @@ export default {
     props: ['data'],
     template: `
         <div class="note-todo">
-                <h2>{{noteTitle}}</h2>
+                <h3>{{noteTitle}}</h3>
                     <ol class="todos-list">
                     <li v-for="todo in noteTodos" :key="todo.id" :class="setTodoClassStatus(todo)" @click="toggleTodo(todo.id)">
 

@@ -9,9 +9,10 @@ export default {
          <li v-for="note in notes" :key="note.id" :style="note.style"   >
              <keep-preview :note="note" @toggleTodo="toggleTodo"  />
        <footer>
+        
        <keep-edit :note="note"  @remove="remove" @change="change"  />       
-    </footer>
-         </li>  
+      </footer>
+       </li>  
 </ul>
 </section>
     `,

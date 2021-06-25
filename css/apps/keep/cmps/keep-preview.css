@@ -1,6 +1,5 @@
-.note-video .iframe {
-    height: auto;
-    width: auto;
+.note-video iframe {
+    max-width: 100%;
 }
 
 
