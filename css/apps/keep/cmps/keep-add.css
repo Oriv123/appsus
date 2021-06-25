@@ -1,5 +1,4 @@
             .keep-add {
-                margin: 20px;
                 display: flex;
                 justify-content: center;
                 gap: 10px;
@@ -19,6 +18,7 @@
                 height: fit-content;
                 outline: none;
                 border: none;
+                border-radius: 10px;
             }
             
             .keep-add button {
@@ -28,10 +28,6 @@
             }
             
             .keep-add button:hover,
-            .keep-add button.selectedType {
+            .keep-add button.selected {
                 opacity: 1;
-            }
-            
-            .keep-add button.selectedType {
-                color: orange;
             }

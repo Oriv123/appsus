@@ -55,7 +55,7 @@ export default {
             this.newNote.type = noteType;
         },
         isNoteSelected(type) {
-            return type === this.newNote.type ? 'selectedType' : '';
+            return type === this.newNote.type ? 'selected' : '';
         },
         addNote() {
             this.$emit('add', this.newNote);

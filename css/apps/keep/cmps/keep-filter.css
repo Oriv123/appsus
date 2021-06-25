@@ -1,0 +1,25 @@
+.keep-filter {
+    background-color: #fff;
+    border-radius: 10px;
+    width: fit-content;
+    margin: 1.5rem auto;
+    opacity: 0.9;
+}
+
+.keep-filter * {
+    font-size: 1.2rem;
+    padding: 0.5em 1em;
+}
+
+.keep-filter input,
+.keep-filter select {
+    line-height: 1.5;
+    height: fit-content;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+}
+
+.keep-filter select {
+    border-left: 1px solid #DEE1EC;
+}

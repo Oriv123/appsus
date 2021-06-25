@@ -6,14 +6,13 @@ import { utilitiesService } from '../../../services/utilities.service.js';
 const KEEP_KEY = 'keepCache';
 
 export const keepService = {
-        query,
-        addNote,
-        editNote,
-        editTodo,
-        removeNote,
+    query,
+    addNote,
+    editNote,
+    editTodo,
+    removeNote,
 
-    }
-    //TODO: Check the todos app from MVC class
+}
 const defaultNotes = [{
         id: utilitiesService.makeId(),
         type: 'noteTxt',
@@ -23,7 +22,7 @@ const defaultNotes = [{
         },
         style: {
             backgroundColor: '#292929',
-            color: 'red'
+            color: '#ff0000'
         }
     },
     {
@@ -35,8 +34,8 @@ const defaultNotes = [{
             title: 'Me playing Mi'
         },
         style: {
-            backgroundColor: 'purple',
-            color: 'blue'
+            backgroundColor: '#6a0dad',
+            color: '#0000ff'
         }
     },
     {
@@ -51,8 +50,8 @@ const defaultNotes = [{
             ]
         },
         style: {
-            backgroundColor: 'yellow',
-            color: 'red'
+            backgroundColor: '#FFFF00',
+            color: '#ff0000'
         }
     },
     {
@@ -65,8 +64,8 @@ const defaultNotes = [{
             title: 'Coding Academy'
         },
         style: {
-            backgroundColor: 'blue',
-            color: 'red'
+            backgroundColor: '#0000ff',
+            color: '#ff0000'
         }
     },
 ];
@@ -117,39 +116,6 @@ function removeNote(noteId) {
 }
 
 
-
-// function getPrevNextBookId(bookId) {
-//     return storageService.query(BOOKS_KEY)
-//         .then(books => {
-//             const idx = books.findIndex(book => book.id === bookId)
-//             const nextBookId = (idx === books.length - 1) ? books[0].id : books[idx + 1].id
-//             const prevBookId = (idx === 0) ? books[books.length - 1].id : books[idx - 1].id
-//             return {
-//                 nextBookId,
-//                 prevBookId
-//             }
-//         });
-// }
-
-// function addReview(bookId, review) {
-//     review.id = utilitiesService.makeId();
-//     return getBookById(bookId).then(book => {
-//         if (!book.reviews) book.reviews = [];
-//         book.reviews.push(review);
-//         return storageService.put(BOOKS_KEY, book);
-//     })
-// }
-
-// function removeReview(bookId, reviewId) {
-//     return getBookById(bookId)
-//         .then(book => {
-//             const reviewIdx = book.reviews.findIndex(review => review.id === reviewId);
-//             if (reviewIdx === -1) return Promise.reject('Failed to find the review!');
-//             book.reviews.splice(reviewIdx, 1);
-//             return storageService.put(BOOKS_KEY, book);
-//         })
-// }
-
 function _getNoteById(noteId) {
     return storageService.get(KEEP_KEY, noteId);
 }
@@ -187,11 +153,13 @@ function _formatNewNote(type, setting) {
 
 }
 
-
 //Sorting out the note info
 function _formatNote(note, setting) {
 
     note.isPinned = setting.isPinned;
+    console.log(setting.style);
+    note.style = {...setting.style };
+    console.log(note.style);
     switch (note.type) {
         case 'noteTxt':
             note.info.txt = setting.txt

@@ -2,34 +2,48 @@ export default {
     props: ['note'],
     template: `
     <div class="keep-edit"  >
-        <!-- TODO: Use Icons -->
         <button @click="togglePin" :class="pinToggeling" :title="pinText"> 
         <i class="fas fa-thumbtack"></i>
         </button> 
         <!-- TODO: Add style edit-background and color -->
-        <button title="Change color"> <i class="fas fa-tint"></i>  </button>
-        <button @click="toggleEditMode" title="Edit"> 
+        <button title="Change color" @click="toggleColorMode" :class="colorToggeling"> 
+            <i class="fas fa-tint"></i>
+          </button>
+        <button @click="toggleEditMode" :class="editToggeling" title="Edit"> 
         <i class="fas fa-edit" ></i>
      </button>
        <button @click="remove(note.id)" title="Delete">
        <i class="fas fa-trash"></i>
        </button>
         <section v-if="isOnEditMode" class="edit-section">
-           <form @submit="updateNote">
-                <input type="text" v-if="newSetting.txt" v-model="newSetting.txt">
-                <input type="text" v-if="newSetting.title" v-model="newSetting.title">
-                <input type="text" v-if="newSetting.url" v-model="newSetting.url">
+           <form @submit.prevent="updateNote">
+                <input type="text" v-if="checkIfEmpty(newSetting.txt)" v-model="newSetting.txt">
+                <input type="text" v-if="checkIfEmpty(newSetting.title)" v-model="newSetting.title">
+                <input type="text" v-if="checkIfEmpty(newSetting.url)" v-model="newSetting.url">
                 <input type="text" name="todo" v-if="newSetting.todos" v-model="newSetting.todos">
                 <button>Update</button>
            </form>
         </section>
+        <section v-if="isOnColorMode" class="color-change-section">
+        <form @submit.prevent="updateNote">
+            <p> Text: <input type="color" v-model="newSetting.style.color" /> </p>
+            <p> background: <input type="color" v-model="newSetting.style.backgroundColor " /> </p>
+            <button>Update</button>
+        </form>
+            
+    </section>
     </div>
 `,
     data() {
         return {
             isOnEditMode: false,
+            isOnColorMode: false,
             newSetting: {
-
+                isPinned: this.note.isPinned,
+                style: {
+                    color: this.note.style.color,
+                    backgroundColor: this.note.style.backgroundColor
+                }
             }
         }
     },
@@ -41,18 +55,13 @@ export default {
         },
 
         updateNote() {
-            // if (this.newSetting.info.todos) {
-
-            //     this.newSetting.info.todos = this.formattedTodos;
-            // }
             const data = {
                 noteId: this.note.id,
                 newSetting: this.newSetting
             }
-
             this.$emit('change', data);
             this.isOnEditMode = false;
-            this.newSetting = {};
+            this.newSetting = { isPinned: this.note.isPinned, style: this.note.style };
         },
         toggleEditMode() {
             this.isOnEditMode = !this.isOnEditMode;
@@ -61,6 +70,12 @@ export default {
             this.newSetting.isPinned = !this.newSetting.isPinned;
             this.updateNote()
         },
+        toggleColorMode() {
+            this.isOnColorMode = !this.isOnColorMode;
+        },
+        checkIfEmpty(str) {
+            return str || str === '';
+        }
 
 
 
@@ -69,7 +84,13 @@ export default {
 
     computed: {
         pinToggeling() {
-            return { pinned: this.newSetting.isPinned }
+            return { selected: this.newSetting.isPinned }
+        },
+        editToggeling() {
+            return { selected: this.isOnEditMode };
+        },
+        colorToggeling() {
+            return { selected: this.isOnColorMode };
         },
         stringifiedTodos() {
             if (!this.note.info.todos) return null;
@@ -97,7 +118,7 @@ export default {
     watch: {
         note: {
             handler() {
-                this.newSetting.isPinned = this.note.isPinned
+
                 const { type } = this.note;
                 switch (type) {
                     case 'noteTxt':
@@ -109,6 +130,7 @@ export default {
                         this.newSetting.url = this.note.info.url;
                         break
                     case 'noteTodos':
+                        this.newSetting.title = this.note.info.title;
                         this.newSetting.todos = this.stringifiedTodos;
                         break
 
@@ -121,11 +143,6 @@ export default {
         }
     },
 
-    created() {
-
-        // if (this.note.info.todos) {
-        //     this.newSetting.todosStr = this.stringifiedTodos;
-        // }
-    },
+    created() {},
 
 }
