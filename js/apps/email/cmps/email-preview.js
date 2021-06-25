@@ -2,7 +2,7 @@ export default {
     name: 'email-preview',
     props: ['email'],
     template: `
-        <section class="email-preview" :class="toggleClass" @click="updateIfRead">
+        <section class="email-preview" :class="toggleClass" @click.stop="updateIfRead">
 
         <div class="star" :class="{starred: email.isStarred}" @click.stop.prevent="toggleStarred(email)">
         <i class="fas fa-star"></i>
@@ -14,31 +14,30 @@ export default {
 
             <div class="content " :class="{bold: !this.email.isRead}" >
                 {{email.subject}}
-                </div>
+            </div>
                 
-                 <div class="email-desc">
+            <div class="email-desc">
                 {{email.body.substring(0, 30)}}...
             </div>
             
 
-                <div class="sent-at">
-				{{sentAt}}
-			    </div>
+            <div class="sent-at">
+			 {{sentAt}}
+			</div>
 
-                <div>
+            <div>
              <span 
-             @click.stop="deleteMail(email.id)" 
-             class="mail-trash" > 
+             @click.prevent="removeEmail(email.id)">
              <i class="far fa-trash-alt"></i> 
-            </span> 
-        </div>
+             </span> 
+            </div>
 
         <!-- <div>
-             <span 
+             <button 
              @click.stop="restoreMail(email.id)" 
              class="mail-trash" v-if="folder==='trash'"
              ><i class="fas fa-undo"></i> 
-            </span>
+            </button>
             </div> -->
 
         </section>
@@ -51,6 +50,9 @@ export default {
         toggleStarred(email) {
             email.isStarred = !email.isStarred
             this.$emit('starred', email)
+        },
+        removeEmail(emailId) {
+            this.$emit('remove', emailId);
         }
     },
     computed: {

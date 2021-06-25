@@ -1,4 +1,3 @@
-import { eventBus } from '../../../services/event-bus-service.js';
 import { emailService } from '../services/email.service.js'
 
 
@@ -8,13 +7,17 @@ export default {
     name: 'email-details',
     template: `
     <section class="email-details" v-if="email">
+
         <button @click="removeEmail(email.id)">Delete</button>
+        
         <h4 class="subject">{{email.subject}}</h4>
         <div class="address-details">
             <p>From: {{email.from}}</p>
             <p>To: {{email.to}}</p>
         </div>
-        <p class="body">{{email.body}}</p>
+
+        <div class="body" v-html="email.body"></div>
+
         <p class="details-timestamp">Sent at {{formattedTime}}</p>
         <div class="details-button-container">
             <router-link to="/email">🠔 Back to inbox</router-link>

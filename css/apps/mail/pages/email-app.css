@@ -4,7 +4,7 @@
 @import '../cmps/email-preview.css';
 @import '../cmps/email-compose.css';
 .email-app {
-    background-color: #EEE;
+    background-color: #DEE1EC;
     width: 100%;
     margin: 0 auto;
     height: fit-content;
@@ -41,8 +41,12 @@
     cursor: pointer;
 }
 
+.email-app .side-menu a {
+    color: black;
+}
+
 .email-app .side-menu .compose {
-    background-color: rgb(255, 255, 255);
+    background-color: #DEE1EC;
     border-radius: 50px;
     margin-bottom: 20px;
     margin-top: 20px;
@@ -68,8 +72,12 @@
 }
 
 .email-app .side-menu .starred::before {
-    font-family: regular;
-    content: "\f005";
+    color: black;
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
+.email-app .side-menu .drafts::before {
     color: black;
     margin-top: 5px;
     margin-right: 10px;
@@ -87,7 +95,7 @@
 }
 
 .email-app .side-menu li:hover:not(:first-child) {
-    background-color: #ffffff9d;
+    background-color: #DEE1EC;
     border-radius: 10px 50px 50px 10px;
 }
 
