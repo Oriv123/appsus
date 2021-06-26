@@ -5,7 +5,7 @@ import emailStatus from '../cmps/email-status.js'
 
 export default {
     template: `
-     <section class="email-app app-main">
+     <section class="email-app ">
          
      <div class="main">
 

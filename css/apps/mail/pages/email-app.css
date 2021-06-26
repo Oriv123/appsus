@@ -6,9 +6,8 @@
 .email-app {
     background-color: #DEE1EC;
     max-width: 1400px;
-    /* width: 100%; */
     margin: 0 auto;
-    height: auto;
+    height: 80vh;
     width: auto;
     padding: 0.5rem 0;
 }

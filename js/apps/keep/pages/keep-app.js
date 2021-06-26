@@ -5,7 +5,7 @@ import keepFilter from '../cmps/keep-filter.js';
 
 export default {
     template: `
-                <main class="keep-app app-main">
+                <main class="keep-app ">
                     <keep-filter  @filtered="setFilter"> </keep-filter>
                     <keep-add @add="addNote"> </keep-add>
               <section v-if="pinnedNotes.length">
