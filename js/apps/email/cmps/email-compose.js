@@ -25,7 +25,7 @@ export default {
 
             </div>
             <div class="compose-button-container">
-                <button type="submit" class="save">Save</button>
+                <button type="submit" class="save">Send</button>
                 <router-link to="/email">Back to inbox</router-link>
             </div>
         </form>
