@@ -49,3 +49,7 @@
     opacity: 0;
     visibility: hidden;
 }
+
+.app-main {
+    height: 80vh;
+}
