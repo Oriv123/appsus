@@ -25,7 +25,7 @@ export default {
 			 {{sentAt}}
 			</div>
 
-            <div class="action">
+            <div class="action flex " >
 
                 <div class="trash">
                     <span @click.prevent="removeEmail(email.id)">
@@ -78,5 +78,6 @@ export default {
                 return moment(emailDate).format('l')
             }
         },
+
     }
 }
