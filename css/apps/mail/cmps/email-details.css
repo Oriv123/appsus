@@ -1,9 +1,9 @@
 .email-details {
-    background-color: white;
+    background-color: #DEE1EC;
     padding: 0px 20px 40px 20px;
     position: relative;
     overflow: hidden;
-    max-width: max-content;
+    max-width: 1400px;
 }
 
 .email-details>:first-child {
@@ -17,7 +17,7 @@
 
 .email-details a:hover,
 .email-details button:hover {
-    color: #fff7f7d3;
+    color: #DEE1EC;
 }
 
 .email-details>*:not(:first-child) {

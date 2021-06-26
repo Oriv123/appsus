@@ -1,10 +1,8 @@
 import { emailService } from '../services/email.service.js'
 
 
-// SMART COMPONENT!
 
 export default {
-    name: 'email-details',
     template: `
     <section class="email-details" v-if="email">
 
@@ -16,15 +14,15 @@ export default {
             <p>To: {{email.to}}</p>
         </div>
 
-        <div class="body" >
+        <div class="emailBody" >
             <p>{{email.body}}</p>
-
         </div>
 
         <p class="details-timestamp">Sent at {{formattedTime}}</p>
+
         <div class="details-button-container">
             <router-link to="/email">🠔 Back to inbox</router-link>
-            <router-link :to="'/email/compose/'+email.id">Reply 🠖</router-link>
+            <router-link :to="'/email/compose/'+email.id" class="back">Reply 🠖</router-link>
         </div>
     </section>
     `,
