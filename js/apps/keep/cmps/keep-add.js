@@ -5,9 +5,11 @@ export default {
 
 
          <input type="text"  :placeholder="noteTypePlaceHolder" @keyup.enter="addNote" v-model="newNote.info.value" />
-         <button v-for="noteType in noteTypes" @click="changeNoteType(noteType.type)" :title="noteType.title" :class="isNoteSelected(noteType.type)" >
+        <section class="buttons-container">
+        <button v-for="noteType in noteTypes" @click="changeNoteType(noteType.type)" :title="noteType.title" :class="isNoteSelected(noteType.type)" >
              <i :class="noteType.iconClasses"> </i>
          </button>
+        </section>
 
 
         </section>

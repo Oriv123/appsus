@@ -11,20 +11,22 @@
             
             .keep-add * {
                 font-size: 1.2rem;
+                outline: none;
+                border: none;
+            }
+            
+            .keep-add .buttons-container {
+                padding: 0.5em;
             }
             
             .keep-add input {
-                padding: 0.5em 1.4em;
-                line-height: 1.5;
+                padding: 0.5em;
                 height: fit-content;
-                outline: none;
-                border: none;
                 border-radius: 10px;
             }
             
             .keep-add button {
                 background-color: transparent;
-                border: none;
                 opacity: 0.5;
             }
             
@@ -35,4 +37,13 @@
             .keep-add button:hover,
             .keep-add button.selected {
                 opacity: 1;
+            }
+            
+            @media (max-width:560px) {
+                .keep-add {
+                    flex-direction: column-reverse;
+                }
+                .keep-add .buttons-container {
+                    margin: auto;
+                }
             }
