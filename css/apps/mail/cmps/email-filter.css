@@ -1,6 +1,25 @@
 .email-filter {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0.5rem;
+    background-color: #fff;
+    border-radius: 10px;
+    width: fit-content;
+    margin: 1.5rem auto;
+    opacity: 0.9;
+}
+
+.email-filter * {
+    font-size: 1.2rem;
+    padding: 0.5em 1em;
+}
+
+.email-filter input,
+.email-filter select {
+    line-height: 1.5;
+    height: fit-content;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+}
+
+.email-filter select {
+    border-left: 1px solid #DEE1EC;
 }

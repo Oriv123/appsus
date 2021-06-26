@@ -1,12 +1,12 @@
     .email-preview {
         display: flex;
         justify-content: space-between;
-        gap: 10px;
+        gap: 1rem;
         background-color: rgb(255, 255, 255);
-        padding: 10px;
-        border-radius: 2px;
+        padding: 2rem;
+        border-radius: 1rem;
         box-shadow: 0 0 3px 0px #46464640;
-        max-height: 80px;
+        max-height: 3rem;
         transition: 0.3s;
     }
     
@@ -26,5 +26,5 @@
     .email-preview:hover {
         z-index: 3;
         margin: 0;
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0rem 1rem 2rem;
     }
