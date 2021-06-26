@@ -2,6 +2,11 @@ export default {
     props: ['note'],
     template: `
     <div class="keep-edit"  >
+        <section class="remove-modal" :hidden=isModalOpen>
+         <p>Are you sure you want to remove this note? </p>
+            <button class="btn-ok">Ok </button>
+            <button class="btn-cancel">Cancel </button>
+        </section>
         <button @click="togglePin" :class="pinToggeling" :title="pinText"> 
         <i class="fas fa-thumbtack"></i>
         </button> 
@@ -30,6 +35,8 @@ export default {
             <p> background: <input type="color" v-model="newSetting.style.backgroundColor " /> </p>
             <button>Update</button>
         </form>
+
+      
             
     </section>
     </div>
@@ -38,6 +45,7 @@ export default {
         return {
             isOnEditMode: false,
             isOnColorMode: false,
+            isModalOpen: false,
             newSetting: {
                 isPinned: this.note.isPinned,
                 style: {
@@ -60,6 +68,7 @@ export default {
             }
             this.$emit('change', data);
             this.isOnEditMode = false;
+            this.isOnColorMode = false;
         },
         toggleEditMode() {
             this.isOnEditMode = !this.isOnEditMode;
@@ -73,6 +82,9 @@ export default {
         },
         checkIfEmpty(str) {
             return str || str === '';
+        },
+        closeModal() {
+            this.isModalOpen = false;
         }
 
 

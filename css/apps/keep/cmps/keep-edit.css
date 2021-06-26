@@ -2,6 +2,30 @@
     padding: 10px;
 }
 
+.keep-edit .remove-modal {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 40%;
+    background-color: #292929;
+    color: #eee;
+    padding: 20px;
+    width: 400px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+}
+
+.keep-edit .remove-modal button {
+    padding: 10px 20px;
+    color: #BECBFF;
+    background-color: #292929;
+}
+
+.keep-edit .remove-modal button:hover {
+    background-color: #BECBFF;
+    color: #292929;
+}
+
 .keep-edit input {
     max-width: 100%;
 }
