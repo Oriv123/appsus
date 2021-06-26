@@ -34,8 +34,8 @@ export default {
         <section v-if="isOnColorMode" class="color-change-section">
         <form @submit.prevent="updateNote">
            <section class="colors-container" > 
-           <label :style="fontColor"> <i class="fas fa-font"></i>  <input type="color" v-model="newSetting.style.color" /> </label>
-            <label :style="bgColor"> <i class="fas fa-palette"></i>: <input type="color" v-model="newSetting.style.backgroundColor " /> </label>
+           <label :style="fontColor" > <i class="fas fa-font"></i>  <input type="color" v-model="newSetting.style.color" /> </label>
+            <label :style="bgColor" > <i class="fas fa-palette"></i>: <input type="color" v-model="newSetting.style.backgroundColor " /> </label>
            </section>
             <button class="update-btn">Update</button>
         </form>

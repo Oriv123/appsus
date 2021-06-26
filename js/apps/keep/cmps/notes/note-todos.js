@@ -2,10 +2,10 @@ export default {
     props: ['data'],
     template: `
         <div class="note-todo">
-                <h3>{{noteTitle}}</h3>
+                <h3 class="title">{{noteTitle}}</h3>
                     <ol class="todos-list">
                     <li v-for="todo in noteTodos" class="todo" :key="todo.id" :class="setTodoClassStatus(todo)" @click="toggleTodo(todo.id)">
-                        <p > 
+                        <p  > 
                             {{todo.txt}}
                             <span v-if="todo.doneAt"> {{getDateTime(todo.doneAt)}}</span>
                        </p>

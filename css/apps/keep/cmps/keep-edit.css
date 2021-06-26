@@ -72,14 +72,15 @@
         
         .color-change-section .colors-container {
             margin-bottom: 10px;
+            text-align: center;
         }
         
         .color-change-section label {
             cursor: pointer;
             margin: 3px;
-            background-color: #fff;
+            background-color: rgb(138, 134, 134);
             border-radius: 5px;
-            padding: 3px;
+            padding: 3px 3px 3px 7px;
         }
         
         .color-change-section input {

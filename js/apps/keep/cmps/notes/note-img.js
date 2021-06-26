@@ -2,7 +2,7 @@ export default {
     props: ['data'],
     template: `
     <div class="note-img"  >
-      <h3>{{noteTitle}}</h3>
+      <h3 class="title">{{noteTitle}}</h3>
       <img :src="noteImgUrl" :alt="noteTitle"  />
     </div>
 `,

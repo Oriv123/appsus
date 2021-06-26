@@ -2,7 +2,7 @@ export default {
     props: ['data'],
     template: `
     <div class="note-video"  >
-      <h3>{{noteTitle}}</h3>
+      <h3 class="title">{{noteTitle}}</h3>
       <iframe  :src="'https://www.youtube.com/embed/'+noteVidId+'?autoplay=0'"></iframe>
     </div>
 `,
