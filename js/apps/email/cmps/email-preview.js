@@ -25,23 +25,19 @@ export default {
 			 {{sentAt}}
 			</div>
 
-            <div class="trash">
-             <span @click.prevent="removeEmail(email.id)">
-             <i class="far fa-trash-alt"></i> 
-             </span> 
+            <div class="action">
+
+                <div class="trash">
+                    <span @click.prevent="removeEmail(email.id)">
+                        <i class="far fa-trash-alt"></i>
+                    </span>
+                </div>
+
+                <div class="envelope" :class="toggleIcon" @click.stop.prevent="toggleIsRead">
+                </div> 
+
             </div>
-
-            <div class="envelope" :class="toggleIcon" @click.stop.prevent="toggleIsRead">
-            </div>
-
-        <!-- <div>
-             <button 
-             @click.stop="restoreMail(email.id)" 
-             class="mail-trash" v-if="folder==='trash'"
-             ><i class="fas fa-undo"></i> 
-            </button>
-            </div> -->
-
+       
         </section>
         `,
     methods: {

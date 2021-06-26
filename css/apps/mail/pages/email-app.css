@@ -8,36 +8,25 @@
     max-width: 1400px;
     margin: 0 auto;
     height: 80vh;
-    width: auto;
-    padding: 0.5rem 0;
 }
 
 .email-app .main {
-    min-height: 60vh;
-    margin: 0 auto;
     display: flex;
-    width: auto;
-    align-content: center;
 }
 
 .email-app .side-menu {
     margin-right: 0.5rem;
     display: flex;
     flex-direction: column;
-    /* width: 10em; */
-    /* height: auto; */
-    width: auto;
 }
 
 .email-app .side-menu li {
     display: flex;
-    align-items: center;
-    width: auto;
-    height: 2em;
+    height: 2rem;
     padding: 5px;
-    border-radius: 10px 50px 50px 10px;
     text-transform: capitalize;
     cursor: pointer;
+    align-items: center;
 }
 
 .email-app .side-menu a {
@@ -45,6 +34,7 @@
 }
 
 .email-app .side-menu .compose {
+    align-items: center;
     background-color: orange;
     border-radius: 50px;
     margin-bottom: 20px;
@@ -53,19 +43,17 @@
 }
 
 .email-app .side-menu .compose::before {
-    color: black;
-    margin-top: 10px;
+    margin-top: 5px;
     margin-right: 10px;
+    margin-left: 5px;
 }
 
 .email-app .side-menu .inbox::before {
-    color: black;
     margin-top: 5px;
     margin-right: 10px;
 }
 
 .email-app .side-menu .sent::before {
-    color: black;
     margin-top: 5px;
     margin-right: 10px;
 }
@@ -77,9 +65,8 @@
 }
 
 .email-app .side-menu .drafts::before {
-    color: black;
-    margin-top: 5px;
     margin-right: 10px;
+    margin-left: 4px
 }
 
 .star:hover,
@@ -88,7 +75,6 @@
     cursor: pointer;
 }
 
-.star:hover,
 .selected {
     color: orange;
 }
@@ -99,11 +85,7 @@
 }
 
 .myStatus {
-    width: 90%;
-    margin: 0 auto;
     background-color: #e9ecef;
-    height: 20px;
-    font: 1rem;
     position: relative
 }
 
@@ -116,9 +98,7 @@
 }
 
 .myBar {
-    width: 1%;
     height: 20px;
-    text-align: center;
     background-size: 20px 20px;
     background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent)
 }

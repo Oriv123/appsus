@@ -2,28 +2,15 @@ import emailPreview from './email-preview.js'
 import emailFilter from './email-filter.js'
 
 export default {
-    name: 'email-list',
     props: ['emails'],
-    template: ` 
+    template: `
     <section class="email-list-container">
-    
+
         <email-filter @filtered="setFilter"/>
-    
-
         <ul class="email-list">
-            <li 
-            v-for="email in emails" 
-            :key="email.id" 
-            class="email-preview-container ">
-                
-                <router-link :to="'/email/'+email.id">  
-
-                <email-preview 
-                    :email="email"
-                     @read="setEmailToRead" 
-                     @remove="removeEmail" 
-                     />
-
+            <li v-for="email in emails" :key="email.id" class="email-preview-container  ">
+                <router-link :to="'/email/'+email.id">
+                 <email-preview :email="email"@read="setEmailToRead" @remove="removeEmail" />
                 </router-link>
             </li>
         </ul>

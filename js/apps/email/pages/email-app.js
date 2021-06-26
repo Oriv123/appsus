@@ -5,48 +5,43 @@ import emailStatus from '../cmps/email-status.js'
 
 export default {
     template: `
-     <section class="email-app ">
-         
-     <div class="main">
+    <section class="email-app ">
+        <div class="main">
+            <ul class="side-menu">
+                <router-link to="/email/compose">
+                <li class="compose fas fa-plus">
+                 Compose
+                </li>
+                </router-link>
 
-        <ul class="side-menu">
-
-            <li class="compose fas fa-plus">
-                <router-link to="/email/compose">Compose</router-link>
-            </li> 
-
-            <li class="inbox fas fa-inbox " @click="currMenu = 'inbox'">
-                <router-link to="/email">inbox</router-link>
-            </li> 
-
-            <li class="sent fas fa-paper-plane" @click="currMenu = 'sent'">
-                <router-link to="/email">sent</router-link>
-            </li> 
-
-            <li class="starred fas fa-star" @click="currMenu = 'starred'">
-                <router-link to="/email" >Starred</router-link>
-            </li> 
-
-            <li class="drafts fas fa-file" @click="currMenu = 'drafts'">
-                <router-link to="/email" >Drafts</router-link>
-            </li>
+                <li class="inbox fas fa-inbox " @click="currMenu = 'inbox'">
+                    <router-link to="/email">inbox </router-link>
+                </li>
+                
+                <li class="sent fas fa-paper-plane" @click="currMenu = 'sent'">
+                    <router-link to="/email">sent</router-link>
+                </li>
+                
+                <li class="starred fas fa-star" @click="currMenu = 'starred'">
+                    <router-link to="/email" >Starred</router-link>
+                </li>
+                
+                <li class="drafts fas fa-file" @click="currMenu = 'drafts'">
+                    <router-link to="/email" >Drafts</router-link>
+                </li>
+                
+                <email-status :percent="readPercentage"/>
+            </ul>
             
-            <email-status 
-            :percent="readPercentage"/>
-        </ul>
-
-            
-
-
-        <router-view 
-        :emails="emailsToShow" 
-        @remove="removeEmail" 
-        @save="loadEmails" 
-        @filtered="setFilter"
-        @read="updateEmail" 
-        @starred="updateEmail"/>
-    </div>
-     </section>
+            <router-view 
+            :emails="emailsToShow" 
+            @remove="removeEmail" 
+            @save="loadEmails" 
+            @filtered="setFilter" 
+            @read="updateEmail" 
+            @starred="updateEmail"/>
+        </div>
+    </section>
     `,
     data() {
         return {
