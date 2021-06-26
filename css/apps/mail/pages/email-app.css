@@ -34,6 +34,7 @@
 }
 
 .email-app .side-menu .compose {
+    display: flex;
     align-items: center;
     background-color: orange;
     border-radius: 50px;
@@ -43,7 +44,6 @@
 }
 
 .email-app .side-menu .compose::before {
-    margin-top: 5px;
     margin-right: 10px;
     margin-left: 5px;
 }
