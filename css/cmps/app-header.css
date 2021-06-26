@@ -2,8 +2,38 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: #EEEEEE;
-    background-color: #00ADB5;
+    background-color: #BECBFF;
+    font-family: fantasy;
 }
 
-.logo {}
+.app-header .logo {
+    color: #0D0CB5;
+    text-transform: uppercase;
+    letter-spacing: 0.266em;
+    margin-left: 10px;
+}
+
+.app-header .logo a {
+    font-size: 1rem;
+}
+
+.app-header a {
+    color: #0D0CB5;
+    font-size: 1.266rem;
+}
+
+.app-header nav a:hover {
+    color: #C82121
+}
+
+.app-header nav {
+    margin-right: 1rem;
+}
+
+.app-header nav span {
+    color: #BECBFF;
+}
+
+.app-header nav .router-link-exact-active {
+    color: orange;
+}

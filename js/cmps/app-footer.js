@@ -1,7 +1,8 @@
 export default {
     template: `
     <footer class="app-footer">
-       <p>Coffee Rights & copy</p>
+        <P>Ori Zaken & Gilead Gafni</P>
+       <p>Coffee Rights &copy</p>
     </footer>
     `,
 };
