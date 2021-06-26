@@ -8,11 +8,11 @@ export default {
                 <main class="keep-app ">
                     <keep-filter  @filtered="setFilter"> </keep-filter>
                     <keep-add @add="addNote"> </keep-add>
-              <section v-if="pinnedNotes.length">
+              <section class="notes" v-if="pinnedNotes.length">
               <h2>Pinned Notes:</h2>
                  <keep-list  :notes="pinnedNotes" @remove="removeNote" @change="changeSetting"  @toggleTodo="toggleTodo"/>
               </section>
-                <section v-if="unPinnedNotes.length">
+                <section class="notes" v-if="unPinnedNotes.length">
                 <h2>Unpinned Notes:</h2>
                  <keep-list  :notes="unPinnedNotes" @remove="removeNote" @change="changeSetting"  @toggleTodo="toggleTodo"/>
                 </section>

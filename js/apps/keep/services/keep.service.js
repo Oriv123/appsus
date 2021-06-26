@@ -2,7 +2,6 @@
 import { storageService } from '../../../services/async-storage-service.js'
 import { utilitiesService } from '../../../services/utilities.service.js';
 
-
 const KEEP_KEY = 'keepCache';
 
 export const keepService = {
@@ -11,7 +10,6 @@ export const keepService = {
     editNote,
     editTodo,
     removeNote,
-
 }
 const defaultNotes = [{
         id: utilitiesService.makeId(),
@@ -59,7 +57,6 @@ const defaultNotes = [{
         type: 'noteVideo',
         isPinned: true,
         info: {
-
             url: 'https://www.youtube.com/watch?v=tgbNymZ7vqY',
             title: 'Coding Academy'
         },
@@ -70,8 +67,6 @@ const defaultNotes = [{
     },
 ];
 
-
-
 function query() {
     return storageService.query(KEEP_KEY)
         .then(notes => {
@@ -81,7 +76,6 @@ function query() {
                 return defNotes;
             }
             return notes;
-
         })
 }
 
@@ -114,7 +108,6 @@ function editTodo(noteId, todoId) {
 function removeNote(noteId) {
     return storageService.remove(KEEP_KEY, noteId);
 }
-
 
 function _getNoteById(noteId) {
     return storageService.get(KEEP_KEY, noteId);
@@ -152,7 +145,6 @@ function _formatNewNote(type, setting) {
 
     };
     return newNote;
-
 }
 
 //Sorting out the note info
@@ -172,7 +164,6 @@ function _formatNote(note, setting) {
             break;
         case 'noteTodos':
             note.info.title = setting.title,
-                //TODO: Should be based id not idx
                 note.info.todos = setting.todos.split(',').map((txt, idx) => {
                     let doneAt = null;
                     const currTodo = note.info.todos[idx];
@@ -187,7 +178,4 @@ function _formatNote(note, setting) {
             break;
     }
     return note;
-
-
-
 }

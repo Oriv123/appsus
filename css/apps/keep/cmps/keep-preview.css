@@ -5,10 +5,19 @@
 
 /* For todos list */
 
-.note-todo li {
+.note-todo {
+    text-align: justify;
+    padding-left: 10px;
+}
+
+.note-todo .todos-list {
+    padding-left: 15px;
+}
+
+.note-todo .todo {
     cursor: pointer;
 }
 
-.note-todo li.done {
+.note-todo .todo.done {
     text-decoration: line-through;
 }

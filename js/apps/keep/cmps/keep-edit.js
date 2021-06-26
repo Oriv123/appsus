@@ -2,12 +2,13 @@ export default {
     props: ['note'],
     template: `
     <div class="keep-edit"  >
-        <section class="remove-modal" :hidden=isModalOpen>
+        <section class="remove-modal" :class="modalShow" @keyup.esc="closeModal" >
          <p>Are you sure you want to remove this note? </p>
-            <button class="btn-ok">Ok </button>
-            <button class="btn-cancel">Cancel </button>
+            <button class="btn-ok" @click="remove(note.id)" ref="btn"  >Ok </button>
+            <button class="btn-cancel" @click="closeModal" ref="btn1">Cancel</button>
         </section>
-        <button @click="togglePin" :class="pinToggeling" :title="pinText"> 
+      <section class="edit-btns">
+      <button @click="togglePin" :class="pinToggeling" :title="pinText"> 
         <i class="fas fa-thumbtack"></i>
         </button> 
         <button title="Change color" @click="toggleColorMode" :class="colorToggeling"> 
@@ -16,24 +17,27 @@ export default {
         <button @click="toggleEditMode" :class="editToggeling" title="Edit"> 
         <i class="fas fa-edit" ></i>
      </button>
-       <button @click="remove(note.id)" title="Delete">
-       <i class="fas fa-trash"></i>
+     <button @click="openModal()" title="Delete">
+     <i class="fas fa-trash"></i>
        </button>
+      </section>
         <section v-if="isOnEditMode" class="edit-section">
           
            <form @submit.prevent="updateNote">
-                <input type="text" v-if="checkIfEmpty(newSetting.txt)" v-model="newSetting.txt">
-                <input type="text" v-if="checkIfEmpty(newSetting.title)" v-model="newSetting.title">
-                <input type="text" v-if="checkIfEmpty(newSetting.url)" v-model="newSetting.url">
+                <input type="text" v-if="checkIfEmpty(newSetting.txt)" name="note-txt" v-model="newSetting.txt">
+                <input type="text" v-if="checkIfEmpty(newSetting.title)" name="note-tilte" v-model="newSetting.title">
+                <input type="text" v-if="checkIfEmpty(newSetting.url)" name="note-url" v-model="newSetting.url">
                 <input type="text" name="todo" v-if="checkIfEmpty(newSetting.todos)" v-model="newSetting.todos">
-                <button>Update</button>
+                <button class="update-btn">Update</button>
            </form>
         </section>
         <section v-if="isOnColorMode" class="color-change-section">
         <form @submit.prevent="updateNote">
-            <p> Text: <input type="color" v-model="newSetting.style.color" /> </p>
-            <p> background: <input type="color" v-model="newSetting.style.backgroundColor " /> </p>
-            <button>Update</button>
+           <section class="colors-container" > 
+           <label :style="fontColor"> <i class="fas fa-font"></i>  <input type="color" v-model="newSetting.style.color" /> </label>
+            <label :style="bgColor"> <i class="fas fa-palette"></i>: <input type="color" v-model="newSetting.style.backgroundColor " /> </label>
+           </section>
+            <button class="update-btn">Update</button>
         </form>
 
       
@@ -57,9 +61,8 @@ export default {
     },
     methods: {
         remove(noteId) {
-            var isAccepted = confirm('Are you sure you want to remove this note?')
-            if (!isAccepted) return;
             this.$emit('remove', noteId);
+            this.isModalOpen = false;
         },
         updateNote() {
             const data = {
@@ -82,6 +85,14 @@ export default {
         },
         checkIfEmpty(str) {
             return str || str === '';
+        },
+        openModal() {
+            this.isModalOpen = true;
+            this.$nextTick(function() {
+                this.$refs.btn.focus()
+            })
+
+
         },
         closeModal() {
             this.isModalOpen = false;
@@ -106,12 +117,22 @@ export default {
             if (!this.note.info.todos) return null;
 
             return this.note.info.todos.map(todo => todo.txt).join(',');
-
         },
 
         pinText() {
             return (this.newSetting.isPinned) ? 'Unpin' : 'pin';
+        },
+        fontColor() {
+            return { color: this.newSetting.style.color };
+        },
+        bgColor() {
+            return { color: this.newSetting.style.backgroundColor }
+        },
+
+        modalShow() {
+            return (this.isModalOpen) ? 'modal-show' : '';
         }
+
 
 
     },
@@ -119,7 +140,6 @@ export default {
         note: {
             handler() {
                 const { type } = this.note;
-                console.log(this.note.style.color);
                 switch (type) {
                     case 'noteTxt':
                         this.newSetting.txt = this.note.info.txt;

@@ -4,7 +4,6 @@ import keepEdit from './keep-edit.js';
 export default {
     props: ['notes'],
     template: `
-      <section v-if="notes.length">
        <ul class="notes-list">
          <li v-for="note in notes" :key="note.id" :style="note.style"   >
              <keep-preview :note="note" @toggleTodo="toggleTodo"  />

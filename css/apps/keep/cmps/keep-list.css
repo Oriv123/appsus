@@ -1,13 +1,12 @@
     .notes-list {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 400px));
-        grid-auto-rows: minmax(100px, 1fr);
         grid-auto-flow: dense;
         gap: 20px;
         margin-bottom: 30px;
     }
     
-    .notes-list li {
+    .notes-list>li {
         height: fit-content;
         display: flex;
         flex-direction: column;

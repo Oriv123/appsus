@@ -4,12 +4,11 @@ export default {
         <div class="note-todo">
                 <h3>{{noteTitle}}</h3>
                     <ol class="todos-list">
-                    <li v-for="todo in noteTodos" :key="todo.id" :class="setTodoClassStatus(todo)" @click="toggleTodo(todo.id)">
-
-                        <p> 
-                            <span v-if="todo.doneAt"> {{getDateTime(todo.doneAt)}}</span>
+                    <li v-for="todo in noteTodos" class="todo" :key="todo.id" :class="setTodoClassStatus(todo)" @click="toggleTodo(todo.id)">
+                        <p > 
                             {{todo.txt}}
-                         </p>
+                            <span v-if="todo.doneAt"> {{getDateTime(todo.doneAt)}}</span>
+                       </p>
                     </li>
                     
                     </ol>
@@ -27,7 +26,7 @@ export default {
         },
         getDateTime(timeStamp) {
             const date = new Date(timeStamp).toLocaleDateString();
-            const time = new Date(timeStamp).toLocaleTimeString();
+            const time = new Date(timeStamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
             return date + ' ' + time;
         }
     },

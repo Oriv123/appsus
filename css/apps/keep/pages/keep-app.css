@@ -6,3 +6,8 @@
 .selected {
     color: orange;
 }
+
+.keep-app .notes h2 {
+    padding-left: 8px;
+    text-decoration: underline;
+}
