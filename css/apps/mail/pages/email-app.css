@@ -117,6 +117,7 @@
         margin-right: unset;
         flex-direction: row;
         align-items: center;
+        font-size: 13px
     }
     .email-app .side-menu li {
         display: flex;

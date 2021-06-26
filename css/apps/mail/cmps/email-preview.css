@@ -49,11 +49,7 @@
            flex-direction: column;
            padding: 5px
        }
-       .unread {
-           background-color: #BECBFF;
-       }
-       .read {
-           background-color: #DEE1EC;
-           font-weight: normal;
+       .email-preview .from {
+           flex: 0 0 20px;
        }
    }
