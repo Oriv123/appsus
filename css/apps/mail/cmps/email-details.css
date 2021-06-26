@@ -1,36 +1,48 @@
 .email-details {
     background-color: #DEE1EC;
-    padding: 0px 20px 40px 20px;
+    padding: 0px 20px 40px;
     position: relative;
     overflow: hidden;
     max-width: 1400px;
+    flex: 1;
 }
 
-.email-details>:first-child {
-    border: none;
-    float: right;
-    background-color: transparent;
-    font-size: inherit;
-    color: inherit;
-    margin-top: 0.25rem;
+.details-button-container a:hover,
+.details-button-container button:hover {
+    opacity: 1;
 }
 
-.email-details a:hover,
-.email-details button:hover {
-    color: #DEE1EC;
-}
-
-.email-details>*:not(:first-child) {
-    margin-bottom: 0.5rem;
+.email-details>* {
+    margin: 0.5rem 0;
 }
 
 .details-button-container {
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.details-button-container .delete-mail {
     position: absolute;
-    bottom: 0;
+    top: 20%;
+    align-self: flex-end;
+    padding: 0;
+}
+
+.bottom-buttons {
+    width: 100%;
     display: flex;
     justify-content: space-between;
-    align-self: center;
+}
+
+.bottom-buttons a {
+    color: #292929;
+}
+
+.details-button-container a,
+.details-button-container button {
+    border: none;
+    opacity: 0.5;
+    background-color: transparent;
 }
 
 .email-details>:nth-child(4) {
